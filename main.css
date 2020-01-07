@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
+
+a:link, a:visited, a:active {
+    color: rgba(0, 0, 0, 0.95);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(0, 0, 0, 0.95);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #f4f3f2;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.header {
+    position: relative;
+	z-index: 99999;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 28px 40px 28px 40px;
+}
+
+.main-nav-items {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.navigation-item {
+    padding: 4px 6px 4px 6px;
+}
+
+.navigation-item:first-of-type {
+    line-height: 24px;
+}
+
+.navigation-link {
+    display: inline-block;
+}
+
+.main-nav-items li:first-of-type::after {
+    content: "";
+    width: 1px;
+    height: 28px;
+    margin: 0px 8px 0 20px;
+    background-image: linear-gradient(to bottom, rgba(218, 220, 220, 0), #dadcdc 50%, rgba(218, 220, 220, 0));
+    float: right;
+    position: relative;
+    top: -2px;
+}
+
+.logo {
+    height: 32px;
+}
+
+.main-footer {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.35);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-nav-items {
+    display: inline-flex;
+}
+
+.follow-us {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 30px 0 6px 0;
+}
+
+.copyright {
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 28px;
+}
+
+span {
+    display: block;
+}
+
+.container {
+    margin: 0 40px;
+}
+
+.photo {
+    max-width: 1140px;
+    height: 480px;
+    border: solid 1px rgba(25, 25, 100, 0.07);
+    background-color: #ffffff;
+    margin: 100px auto;
+    display: flex;
+    position: relative;
+}
+
+.info {
+    width: 290px;
+    max-height: 388px;
+    margin: 52px 40px 40px 40px;
+}
+
+.year {
+    font-size: 14px;
+    color: #8e8e93;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-family: NotoSerif, serif;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.source {
+    font-family: NotoSerif, serif;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 22px;
+}
+
+.source-title {
+    color: #8e8e93;
+    display: inline;
+}
+
+.share-text {
+    font-family: NotoSerif, serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.and {
+    margin: 0 4px 0 4px;
+    font-size: 32px;
+    color: #D8D8D8;
+    font-weight: 200;
+}
+
+.share {
+    display: flex;
+    align-items: center;
+}
+
+.right .info {
+    order: 1;
+}
+
+.right .ba-slider {
+    order: 2;
+    margin-right: 20px;
+}
+
+.left .info {
+    order: 2;
+}
+
+.left .ba-slider {
+    order: 1;
+    margin-left: 20px;
+}
+
+.ba-slider {
+    max-width: 750px;
+    position: relative;
+    overflow: hidden;
+    height: 560px;
+    top: -40px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.16), 0 16px 32px 0 rgba(0, 0, 0, 0.16);
+}
+ 
+.ba-slider img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    height: 100%;
+}
+ 
+.resize {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+.handle { /* Thin line seperator */
+  position: absolute; 
+  left: 50%;
+  top: 0;
+  bottom: 0;
+}
+ 
+.handle:after {  /* Big orange knob  */
+    cursor: ew-resize;
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
+    content:'';
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 -4px 8px 0 rgba(0, 0, 0, 0.4), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background: url(../images/chevrons.svg), linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    background-size: 28px 28px, 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*.draggable:after {
+    cursor: grabbing;
+}*/
