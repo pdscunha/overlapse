@@ -249,6 +249,11 @@ span {
 
     .photo {
         flex-direction: column-reverse;
+        margin: 40px 0;
+    }
+
+    .photo:first-child {
+        margin-top: 0;
     }
 
     .right .ba-slider {
@@ -267,6 +272,7 @@ span {
 
     .ba-slider {
         top: 0;
-        left: -16px;
+        left: 0;
+        margin: 0;
     }
 }
