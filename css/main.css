@@ -249,19 +249,11 @@ span {
 
     .photo {
         flex-direction: column-reverse;
-        margin: 40px 0;
+        margin: 40px 8px;
     }
 
     .photo:first-child {
         margin-top: 0;
-    }
-
-    .right .ba-slider {
-        margin-right: 0;
-    }
-
-    .left .ba-slider {
-        margin-left: 0;
     }
 
     .info {
@@ -273,6 +265,14 @@ span {
     .ba-slider {
         top: 0;
         left: 0;
-        margin: 0;
+        margin: 0 -8px 0 -8px;
+    }
+
+    .right .ba-slider {
+        margin-right: -8px;
+    }
+
+    .left .ba-slider {
+        margin-left: -8px;
     }
 }
