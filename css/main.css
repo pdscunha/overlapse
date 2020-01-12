@@ -275,4 +275,12 @@ span {
     .left .ba-slider {
         margin-left: -8px;
     }
+
+    .description {
+        margin-bottom: 16px;
+    }
+
+    .share {
+        position: relative;
+    }
 }
