@@ -283,17 +283,20 @@ span {
 
     .description {
         margin-bottom: 16px;
+        margin-top: 12px;
     }
 
     .share {
         position: relative;
+        justify-content: center;
     }
 
     .year {
         justify-content: center;
     }
 
-    .share {
-        justify-content: center;
+    .title {
+        font-size: 28px;
     }
+    
 }
