@@ -66,6 +66,10 @@ body {
     top: -2px;
 }
 
+.nav-toggle {
+    display: none;
+}
+
 .logo {
     height: 32px;
 }
@@ -216,27 +220,47 @@ span {
     overflow: hidden;
 }
 
-.handle { /* Thin line seperator */
+.handle {
   position: absolute; 
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: #fff;
-  margin-left: -1px;
+  margin-left: -21px;
+  display: flex;
+  align-items: center;
+  cursor: col-resize;
 }
- 
-.handle:after {  /* Big orange knob  */
-    cursor: ew-resize;
-    position: absolute;
-    width: 44px;
-    height: 100%;
-    margin-left: -22px;
-    content: '';
-    background: url(../images/chevrons.svg);
-    background-size: 48px 48px, 100%;
+
+.ba-chevron {
+    width: 16px;
+    height: 16px;
+    background: url(../images/chevron.svg);
+    background-size: 16px 16px;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 2px;
+}
+
+.ba-chevron.ba-right {
+	transform: rotate(180deg);
+}
+
+.ba-bar {
+    width: 2px;
+    height: 100%;
+    background: #fff;
+}
+
+@media (max-width: 768px) and (min-width: 513px) {
+
+    .container {
+        margin: 0 20px;
+    }
+
+    .header {
+        padding: 20px;
+    }
+
 }
 
 @media (max-width: 512px) and (min-width: 0px) {
