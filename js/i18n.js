@@ -312,6 +312,8 @@
       });
       document.dispatchEvent(event);
     }
+
+    document.documentElement.removeAttribute('data-i18n-loading');
   }
 
   window.OverlapseI18n = api;
