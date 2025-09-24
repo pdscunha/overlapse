@@ -316,7 +316,9 @@
 
   window.OverlapseI18n = api;
 
-  document.addEventListener('DOMContentLoaded', function() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyTranslations, { once: true });
+  } else {
     applyTranslations();
-  });
+  }
 })(window, document);
