@@ -1,13 +1,19 @@
 // Call & init
 $(document).ready(function(){
-  $('.ba-slider').each(function(){
+  var sliders = $('.ba-slider');
+
+  sliders.each(function(){
     var cur = $(this);
-    // Adjust the slider
-    var width = cur.width()+'px';
+    // Adjust the slider image width to match the container width
+    var width = cur.width() + 'px';
     cur.find('.resize img').css('width', width);
+    // Prepare the slider for the entrance animation
+    prepareSliderAnimation(cur);
     // Bind dragging events
     drags(cur.find('.handle'), cur.find('.resize'), cur);
   });
+
+  initSliderAnimations(sliders);
 });
 
 // Update sliders on resize. 
@@ -24,6 +30,8 @@ function drags(dragElement, resizeElement, container) {
 	
   // Initialize the dragging event on mousedown.
   dragElement.on('mousedown touchstart', function(e) {
+    dragElement.css('transition', 'none');
+    resizeElement.css('transition', 'none');
     
     dragElement.addClass('draggable');
     resizeElement.addClass('resizable');
@@ -75,4 +83,74 @@ function drags(dragElement, resizeElement, container) {
     dragElement.removeClass('draggable');
     resizeElement.removeClass('resizable');
   });
+}
+
+function prepareSliderAnimation(slider) {
+  slider.data('hasAnimated', false);
+  slider.find('.resize').css({ width: '0%', transition: 'none' });
+  slider.find('.handle').css({ left: '0%', transition: 'none' });
+}
+
+function animateSlider(slider) {
+  if (slider.data('hasAnimated')) {
+    return;
+  }
+
+  slider.data('hasAnimated', true);
+
+  var resizeEl = slider.find('.resize');
+  var handleEl = slider.find('.handle');
+
+  // Force reflow so transition toggles reliably
+  resizeEl[0].offsetHeight;
+  handleEl[0].offsetHeight;
+
+  resizeEl.css('transition', 'width 500ms cubic-bezier(0.05, 0.7, 0.1, 1.0)');
+  handleEl.css('transition', 'left 500ms cubic-bezier(0.05, 0.7, 0.1, 1.0)');
+
+  resizeEl.css('width', '50%');
+  handleEl.css('left', '50%');
+
+  setTimeout(function(){
+    resizeEl.css('transition', 'none');
+    handleEl.css('transition', 'none');
+  }, 520);
+}
+
+function initSliderAnimations(sliders) {
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateSlider($(entry.target));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    sliders.each(function(){
+      observer.observe(this);
+    });
+  } else {
+    // Fallback: animate any sliders currently visible and on scroll
+    var onScroll = function() {
+      sliders.each(function(){
+        var slider = $(this);
+        if (isElementInViewport(slider[0])) {
+          animateSlider(slider);
+        }
+      });
+    };
+
+    $(window).on('scroll.baSlider resize.baSlider', onScroll);
+    onScroll();
+  }
+}
+
+function isElementInViewport(el) {
+  var rect = el.getBoundingClientRect();
+  return (
+    rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom > 0
+  );
 }

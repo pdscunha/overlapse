@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" />
+
+        <title>Overlapse Map</title>
+        <meta name="description" content="Explore the Overlapse map to see where each paired photograph was captured." />
+
+        <link rel="shortcut icon" href="/images/components/icons/favicon@2x.png" />
+        <link rel="mask-icon" href="/images/components/icons/favicon.svg" color="rgb(252, 177, 0)" />
+        <link rel="apple-touch-icon-precomposed" href="/images/components/icons/apple-touch-icon-precomposed.png" />
+        <link rel="icon" href="/images/components/icons/apple-touch-icon-precomposed.png" />
+
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:title" content="Overlapse Map" />
+        <meta property="og:image" content="/images/layouts/base/social-facebook-52.jpg" />
+        <meta property="og:site_name" content="Overlapse" />
+
+        <meta name="twitter:site" content="@overlapse" />
+        <meta name="twitter:title" content="Overlapse Map" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="/images/layouts/base/social-twitter-52.jpg" />
+    </head>
+
+    <body>
+        <header class="header">
+            <a href="index.html" class="logo" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
+                <img class="" src="images/overlapse.svg" alt="Overlapse">
+            </a>
+            <nav role="main-nav">
+                <ul class="main-nav-items main-nav-items--primary">
+                    <li class="navigation-item"><a class="navigation-link" href="about.html" data-i18n="nav.about">About</a></li>
+                    <li class="navigation-item"><a class="navigation-link navigation-link--active" href="map.html" aria-current="page" data-i18n="nav.map">Map</a></li>
+                </ul>
+                <ul class="main-nav-items main-nav-items--social">
+                    <li class="navigation-item navigation-item--social">
+                        <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
+                            <p class="sr-only" data-i18n="social.facebook">Open Facebook page</p>
+                            <span class="icon icon--facebook-button"></span>
+                        </a>
+                    </li>
+                    <li class="navigation-item navigation-item--social">
+                        <a class="project-detail-summing__social-link" href="https://www.instagram.com/overlapseproject/" target="_blank" title="Open Instagram page" aria-label="Open Instagram page" data-i18n-attrs="title,aria-label" data-i18n-title="social.instagram" data-i18n-aria-label="social.instagram">
+                            <p class="sr-only" data-i18n="social.instagram">Open Instagram page</p>
+                            <span class="icon icon--instagram-button"></span>
+                        </a>
+                    </li>
+                    <li class="navigation-item navigation-item--social">
+                        <a class="project-detail-summing__social-link" href="https://twitter.com/overlapseproject" target="_blank" title="Open Twitter page" aria-label="Open Twitter page" data-i18n-attrs="title,aria-label" data-i18n-title="social.twitter" data-i18n-aria-label="social.twitter">
+                            <p class="sr-only" data-i18n="social.twitter">Open Twitter page</p>
+                            <span class="icon icon--twitter-button"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="map-page">
+            <section class="map-fullscreen">
+                <div id="map" class="map-container"></div>
+            </section>
+        </main>
+
+        <footer class="main-footer" role="contentinfo">
+            <a href="index.html" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
+                <img class="" src="images/overlapse.svg" height="40px" alt="Overlapse"></a>
+            <span class="follow-us" data-i18n="follow.us">Follow Us</span>
+            <ul class="footer-nav-items">
+                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                <li class="navigation-item"><a class="navigation-link" href="https://www.instagram.com/overlapseproject/" data-i18n-attrs="title" data-i18n-title="social.instagram">
+                    <img class="social-media-icon" src="images/instagram.svg" alt="Instagram"></a></li>
+                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+            </ul>
+            <span class="copyright" data-i18n="footer.copyright">&copy; 2019 Overlapse</span>
+        </footer>
+
+        <script type="text/javascript" src="js/i18n.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/map.js"></script>
+    </body>
+</html>
