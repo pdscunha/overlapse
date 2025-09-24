@@ -29,6 +29,12 @@
       year: {
         connector: '&'
       },
+      home: {
+        hero: {
+          title: 'Where past meets present',
+          subtitle: 'Going back in time without a DeLorean'
+        }
+      },
       locations: {
         praia: {
           years: '1974 & 2014',
@@ -113,6 +119,12 @@
       },
       footer: {
         copyright: '© 2019 Overlapse'
+      },
+      home: {
+        hero: {
+          title: 'Onde o passado<br>encontra o presente',
+          subtitle: 'Viajar no tempo sem um DeLorean'
+        }
       },
       year: {
         connector: 'e'

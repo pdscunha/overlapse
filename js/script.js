@@ -14,6 +14,8 @@ $(document).ready(function(){
   });
 
   initSliderAnimations(sliders);
+  initHeroHeaderVisibility();
+  initLayoutSwitcher();
 });
 
 // Update sliders on resize. 
@@ -153,4 +155,97 @@ function isElementInViewport(el) {
     rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
     rect.bottom > 0
   );
+}
+
+function initHeroHeaderVisibility() {
+  var header = document.querySelector('.header');
+  var hero = document.querySelector('.hero');
+
+  if (!header) {
+    return;
+  }
+
+  if (!hero) {
+    header.classList.add('header--visible');
+    return;
+  }
+
+  var heroHeight = hero.offsetHeight;
+
+  var updateHeaderStateByScroll = function() {
+    if (window.scrollY >= heroHeight) {
+      header.classList.add('header--visible');
+    } else {
+      header.classList.remove('header--visible');
+    }
+  };
+
+  var recalcHeroHeight = function() {
+    heroHeight = hero.offsetHeight;
+    updateHeaderStateByScroll();
+  };
+
+  recalcHeroHeight();
+
+  window.addEventListener('scroll', updateHeaderStateByScroll, { passive: true });
+  window.addEventListener('resize', recalcHeroHeight);
+  window.addEventListener('orientationchange', recalcHeroHeight);
+}
+
+function initLayoutSwitcher() {
+  var switcher = document.querySelector('.layout-switcher');
+  var container = document.querySelector('.container');
+
+  if (!switcher || !container) {
+    return;
+  }
+
+  var buttons = Array.prototype.slice.call(switcher.querySelectorAll('[data-layout]'));
+  var setActive = function(button) {
+    buttons.forEach(function(btn) {
+      btn.classList.toggle('layout-switcher__button--active', btn === button);
+    });
+  };
+
+  var applyLayout = function(layout) {
+    container.setAttribute('data-layout', layout);
+  };
+
+  switcher.addEventListener('click', function(event) {
+    var target = event.target.closest('[data-layout]');
+    if (!target) {
+      return;
+    }
+
+    var layoutName = target.getAttribute('data-layout');
+    setActive(target);
+    applyLayout(layoutName);
+  });
+
+  var toggleVisibility = function(show) {
+    switcher.classList.toggle('layout-switcher--visible', show);
+  };
+
+  var hero = document.querySelector('.hero');
+
+  if (hero) {
+    var getViewportHeight = function() {
+      return window.innerHeight || document.documentElement.clientHeight || 0;
+    };
+
+    var updateVisibility = function() {
+      var rect = hero.getBoundingClientRect();
+      var threshold = getViewportHeight() / 2;
+      toggleVisibility(rect.bottom <= threshold);
+    };
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    var onResize = function() {
+      updateVisibility();
+    };
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    updateVisibility();
+  } else {
+    toggleVisibility(true);
+  }
 }
