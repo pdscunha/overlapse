@@ -16,6 +16,7 @@ $(document).ready(function(){
   initSliderAnimations(sliders);
   initHeroHeaderVisibility();
   initLayoutSwitcher();
+  initThemeToggle();
 });
 
 // Update sliders on resize. 
@@ -247,5 +248,118 @@ function initLayoutSwitcher() {
     updateVisibility();
   } else {
     toggleVisibility(true);
+  }
+}
+
+function initThemeToggle() {
+  var toggles = document.querySelectorAll('.theme-toggle');
+  if (!toggles.length) {
+    return;
+  }
+
+  var storageKey = 'overlapse-theme';
+  var storedTheme = null;
+  try {
+    storedTheme = localStorage.getItem(storageKey);
+  } catch (error) {
+    storedTheme = null;
+  }
+
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+  var hasExplicitPreference = !!storedTheme;
+
+  var stops = ['0.95', '1.2', '1.4', '2', '2.8', '4', '5.6', '8', '11', '16'];
+
+  toggles.forEach(function(btn) {
+    var inner = btn.querySelector('.theme-toggle__value-inner');
+    if (!inner || inner.dataset.initialized === 'true') {
+      return;
+    }
+    inner.innerHTML = stops.map(function(stop) {
+      return '<span class="theme-toggle__value-item">' + stop + '</span>';
+    }).join('');
+    inner.style.setProperty('--aperture-steps', stops.length - 1);
+    inner.dataset.initialized = 'true';
+  });
+
+  var getStopIndex = function(theme) {
+    return stops.indexOf(theme === 'dark' ? '16' : '0.95');
+  };
+
+  var updateReels = function(theme, options) {
+    var index = getStopIndex(theme);
+    var animate = options && options.animate;
+
+    toggles.forEach(function(btn, idx) {
+      var inner = btn.querySelector('.theme-toggle__value-inner');
+      if (!inner) {
+        return;
+      }
+
+      if (!animate) {
+        inner.style.transition = 'none';
+        inner.style.setProperty('--aperture-index', index);
+        void inner.offsetHeight;
+        inner.style.transition = '';
+      } else {
+        var delay = idx * 90;
+        setTimeout(function() {
+          inner.style.setProperty('--aperture-index', index);
+        }, delay);
+      }
+    });
+  };
+
+  var applyTheme = function(theme) {
+    var isDark = theme === 'dark';
+    document.body.classList.toggle('theme-dark', isDark);
+    toggles.forEach(function(btn) {
+      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.classList.toggle('theme-toggle--active', isDark);
+    });
+    if (hasExplicitPreference) {
+      try {
+        localStorage.setItem(storageKey, theme);
+      } catch (error) {
+        // ignore storage errors
+      }
+    }
+  };
+
+  applyTheme(currentTheme);
+  updateReels(currentTheme, { animate: false });
+
+  toggles.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentTheme = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+      hasExplicitPreference = true;
+      applyTheme(currentTheme);
+      updateReels(currentTheme, { animate: true });
+    });
+  });
+
+  if (window.matchMedia) {
+    var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    var mediaChangeHandler = function(event) {
+      var stored = null;
+      try {
+        stored = localStorage.getItem(storageKey);
+      } catch (error) {
+        stored = null;
+      }
+      if (stored) {
+        return;
+      }
+      hasExplicitPreference = false;
+      applyTheme(event.matches ? 'dark' : 'light');
+      updateReels(event.matches ? 'dark' : 'light', { animate: true });
+    };
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', mediaChangeHandler);
+    } else if (typeof mediaQuery.addListener === 'function') {
+      mediaQuery.addListener(mediaChangeHandler);
+    }
   }
 }

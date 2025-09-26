@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch Experimental 63 (91866) - https://sketch.com -->
-    <title>Rectangle</title>
-    <desc>Created with Sketch Experimental.</desc>
-    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
-        <g id="Group-8" stroke="#FFFFFF" stroke-width="2">
-            <polyline id="chevron" points="11 2 5 8 11 14"></polyline>
+<svg width="10px" height="16px" viewBox="0 0 10 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Frame</title>
+    <defs>
+        <path d="M0,0 L10,0 L10,16 L0,16 L0,0 Z" id="path-1"></path>
+        <path d="M6.29289322,3.29489797 C6.92285808,2.66493311 8,3.1110999 8,4.00200475 L8,12.0020048 C8,12.8929096 6.92285808,13.3390764 6.29289322,12.7091115 L2.29289322,8.70911154 C1.90236893,8.31858724 1.90236893,7.68542227 2.29289322,7.29489797 L6.29289322,3.29489797 Z" id="path-2"></path>
+        <filter x="-58.3%" y="-25.0%" width="216.7%" height="170.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Frame" stroke="none" fill="none" transform="translate(0, -0.002)" xlink:href="#path-1">
+        <g id="Path-Copy">
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
         </g>
     </g>
 </svg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="20px" viewBox="0 0 8 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Divider</title>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Frame" transform="translate(-0, 0)" fill="#000000">
+            <polygon id="Divider" points="0 20 1.4565 20 7.768 0 6.55425 0"></polygon>
+        </g>
+    </g>
+</svg>

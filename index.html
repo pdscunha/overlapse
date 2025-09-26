@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-        <link rel="stylesheet" href="css/normalize.css" />    
+        <link rel="stylesheet" href="css/normalize.css" />
         <link rel="stylesheet" href="css/main.css">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -15,7 +15,7 @@
         <link rel="mask-icon" href="/images/components/icons/favicon.svg" color="rgb(252, 177, 0)" />
         <link rel="apple-touch-icon-precomposed" href="/images/components/icons/apple-touch-icon-precomposed.png" />
         <link rel="icon" href="/images/components/icons/apple-touch-icon-precomposed.png" />
-        
+
         <meta property="og:locale" content="en_US" />
         <meta property="og:title" content="Overlapse uses past and present photos to demonstrate how human activity shapes our city." />
         <meta property="og:image" content="/images/layouts/base/social-facebook-52.jpg" />
@@ -28,6 +28,24 @@
     </head>
 
     <body>
+        <script>
+            (function () {
+                var storageKey = 'overlapse-theme';
+                var theme = null;
+                try {
+                    theme = localStorage.getItem(storageKey);
+                } catch (error) {
+                    theme = null;
+                }
+                if (!theme) {
+                    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    theme = prefersDark ? 'dark' : 'light';
+                }
+                if (theme === 'dark') {
+                    document.body.classList.add('theme-dark');
+                }
+            })();
+        </script>
         <header class="header">
             <nav role="main-nav">
                 <ul class="main-nav-items main-nav-items--primary">
@@ -36,28 +54,41 @@
                 </ul>
             </nav>
             <a href="index.html" class="logo" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
-                <img class="" src="images/overlapse.svg" alt="Overlapse">
+                <img src="images/overlapse.svg" alt="Overlapse">
             </a>
-            <ul class="main-nav-items main-nav-items--social header__social">
-                <li class="navigation-item navigation-item--social">
-                    <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
-                        <p class="sr-only" data-i18n="social.facebook">Open Facebook page</p>
-                        <span class="icon icon--facebook-button"></span>
-                    </a>
-                </li>
-                <li class="navigation-item navigation-item--social">
-                    <a class="project-detail-summing__social-link" href="https://www.instagram.com/overlapseproject/" target="_blank" title="Open Instagram page" aria-label="Open Instagram page" data-i18n-attrs="title,aria-label" data-i18n-title="social.instagram" data-i18n-aria-label="social.instagram">
-                        <p class="sr-only" data-i18n="social.instagram">Open Instagram page</p>
-                        <span class="icon icon--instagram-button"></span>
-                    </a>
-                </li>
-                <li class="navigation-item navigation-item--social">
-                    <a class="project-detail-summing__social-link" href="https://twitter.com/overlapseproject" target="_blank" title="Open Twitter page" aria-label="Open Twitter page" data-i18n-attrs="title,aria-label" data-i18n-title="social.twitter" data-i18n-aria-label="social.twitter">
-                        <p class="sr-only" data-i18n="social.twitter">Open Twitter page</p>
-                        <span class="icon icon--twitter-button"></span>
-                    </a>
-                </li>
-            </ul>
+            <div class="header__actions">
+                <ul class="main-nav-items main-nav-items--actions header__actions-list">
+                    <li class="navigation-item navigation-item--action">
+                        <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
+                            <p class="sr-only" data-i18n="social.facebook">Open Facebook page</p>
+                            <span class="icon icon--facebook-button"></span>
+                        </a>
+                    </li>
+                    <li class="navigation-item navigation-item--action">
+                        <a class="project-detail-summing__social-link" href="https://www.instagram.com/overlapseproject/" target="_blank" title="Open Instagram page" aria-label="Open Instagram page" data-i18n-attrs="title,aria-label" data-i18n-title="social.instagram" data-i18n-aria-label="social.instagram">
+                            <p class="sr-only" data-i18n="social.instagram">Open Instagram page</p>
+                            <span class="icon icon--instagram-button"></span>
+                        </a>
+                    </li>
+                    <li class="navigation-item navigation-item--action">
+                        <a class="project-detail-summing__social-link" href="https://twitter.com/overlapseproject" target="_blank" title="Open Twitter page" aria-label="Open Twitter page" data-i18n-attrs="title,aria-label" data-i18n-title="social.twitter" data-i18n-aria-label="social.twitter">
+                            <p class="sr-only" data-i18n="social.twitter">Open Twitter page</p>
+                            <span class="icon icon--twitter-button"></span>
+                        </a>
+                    </li>
+                </ul>
+                <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-toggle__window">
+                        <span class="theme-toggle__static">ƒ/</span>
+                        <span class="theme-toggle__value">
+                            <span class="theme-toggle__value-inner">
+                                <span class="theme-toggle__value-item theme-toggle__value-item--light">0.95</span>
+                                <span class="theme-toggle__value-item theme-toggle__value-item--dark">16</span>
+                            </span>
+                        </span>
+                    </span>
+                </button>
+            </div>
         </header>
 
         <section class="hero" style="--hero-image: url('../images/hero.jpg');">
@@ -71,44 +102,74 @@
                 <a href="index.html" class="hero-nav__logo" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
                     <img src="images/logo-dark.svg" alt="Overlapse">
                 </a>
-                <ul class="main-nav-items main-nav-items--social hero-nav__social">
-                    <li class="navigation-item navigation-item--social">
-                        <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
-                            <p class="sr-only" data-i18n="social.facebook">Open Facebook page</p>
-                            <span class="icon icon--facebook-button"></span>
-                        </a>
-                    </li>
-                    <li class="navigation-item navigation-item--social">
-                        <a class="project-detail-summing__social-link" href="https://www.instagram.com/overlapseproject/" target="_blank" title="Open Instagram page" aria-label="Open Instagram page" data-i18n-attrs="title,aria-label" data-i18n-title="social.instagram" data-i18n-aria-label="social.instagram">
-                            <p class="sr-only" data-i18n="social.instagram">Open Instagram page</p>
-                            <span class="icon icon--instagram-button"></span>
-                        </a>
-                    </li>
-                    <li class="navigation-item navigation-item--social">
-                        <a class="project-detail-summing__social-link" href="https://twitter.com/overlapseproject" target="_blank" title="Open Twitter page" aria-label="Open Twitter page" data-i18n-attrs="title,aria-label" data-i18n-title="social.twitter" data-i18n-aria-label="social.twitter">
-                            <p class="sr-only" data-i18n="social.twitter">Open Twitter page</p>
-                            <span class="icon icon--twitter-button"></span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="hero-nav__actions">
+                    <ul class="main-nav-items main-nav-items--actions hero-nav__actions-list">
+                        <li class="navigation-item navigation-item--action">
+                            <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
+                                <p class="sr-only" data-i18n="social.facebook">Open Facebook page</p>
+                                <span class="icon icon--facebook-button"></span>
+                            </a>
+                        </li>
+                        <li class="navigation-item navigation-item--action">
+                            <a class="project-detail-summing__social-link" href="https://www.instagram.com/overlapseproject/" target="_blank" title="Open Instagram page" aria-label="Open Instagram page" data-i18n-attrs="title,aria-label" data-i18n-title="social.instagram" data-i18n-aria-label="social.instagram">
+                                <p class="sr-only" data-i18n="social.instagram">Open Instagram page</p>
+                                <span class="icon icon--instagram-button"></span>
+                            </a>
+                        </li>
+                        <li class="navigation-item navigation-item--action">
+                            <a class="project-detail-summing__social-link" href="https://twitter.com/overlapseproject" target="_blank" title="Open Twitter page" aria-label="Open Twitter page" data-i18n-attrs="title,aria-label" data-i18n-title="social.twitter" data-i18n-aria-label="social.twitter">
+                                <p class="sr-only" data-i18n="social.twitter">Open Twitter page</p>
+                                <span class="icon icon--twitter-button"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <button type="button" class="theme-toggle theme-toggle--hero" aria-label="Toggle dark mode">
+                        <span class="theme-toggle__window">
+                            <span class="theme-toggle__static">ƒ/</span>
+                            <span class="theme-toggle__value">
+                                <span class="theme-toggle__value-inner">
+                                    <span class="theme-toggle__value-item theme-toggle__value-item--light">0.95</span>
+                                    <span class="theme-toggle__value-item theme-toggle__value-item--dark">16</span>
+                                </span>
+                            </span>
+                        </span>
+                    </button>
+                </div>
             </div>
             <div class="hero__inner">
-                <h1 class="hero__title" data-i18n="home.hero.title" data-i18n-html>Where past meets present</h1>
+                <h1 class="hero__title" data-i18n="home.hero.title">Where past meets present</h1>
                 <p class="hero__subtitle" data-i18n="home.hero.subtitle">Going back in time without a DeLorean</p>
             </div>
         </section>
 
-        <div class="layout-switcher" role="toolbar" aria-label="Layout options">
-            <button type="button" class="layout-switcher__button layout-switcher__button--active" data-layout="slots">Slots</button>
-            <button type="button" class="layout-switcher__button" data-layout="full-card">Full Card</button>
-            <button type="button" class="layout-switcher__button" data-layout="card">Card</button>
-            <button type="button" class="layout-switcher__button" data-layout="photo-corners">Photo Corners</button>
-        </div>
+        <main>
+            <div class="layout-switcher" role="toolbar" aria-label="Layout options">
+                <button type="button" class="layout-switcher__button layout-switcher__button--active" data-layout="slots">Slots</button>
+                <button type="button" class="layout-switcher__button" data-layout="full-card">Full Card</button>
+                <button type="button" class="layout-switcher__button" data-layout="card">Card</button>
+                <button type="button" class="layout-switcher__button" data-layout="photo-corners">Photo Corners</button>
+            </div>
 
-        <div class="container" data-layout="slots">
-            <article class="photo right">
+            <div class="container" data-layout="slots">
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
                     <div class="info">
-                        <div class="year">1974<span class="and" data-i18n="year.connector">&</span>2014</div>
+                        <div class="year">1974<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2014</div>
                         <div class="title">Praia da Barra</div>
                         <div class="description" data-i18n="locations.praia.description">View from the Barra Lighthouse. The Barra bridge is captured mid-construction.</div>
                         <div class="share">
@@ -121,82 +182,310 @@
                             </ul>
                         </div>
                     </div>
-                <div class="ba-slider">
-                    <img src="images/new.jpg" alt="">       
-                    <div class="resize">
-                      <img src="images/old.jpg" alt="">
-                      <div class="source">Eng.º Adelino Lopes</div>
-                    </div>
-                    <div class="handle">
-                        <span class="ba-chevron ba-left"></span>
-                        <div class="ba-bar"></div>
-                        <span class="ba-chevron ba-right"></span>
-                    </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="photo left">
-                <div class="info">
-                    <div class="year">1974<span class="and" data-i18n="year.connector">&</span>2014</div>
-                    <div class="title">Praia da Barra</div>
-                    <div class="description" data-i18n="locations.praia.description">View from the Barra Lighthouse. The Barra bridge is captured mid-construction.</div>
-                    <div class="share">
-                        <span class="share-text" data-i18n="share.label">Share</span>
-                        <ul class="footer-nav-items">
-                            <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
-                                <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                            <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
-                                <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
-                        </ul>
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
                     </div>
-                </div>
-                <div class="ba-slider">
-                    <img src="images/new.jpg" alt="">       
-                    <div class="resize">
-                    <img src="images/old.jpg" alt="">
-                    <div class="source">Eng.º Adelino Lopes</div>
+                    <div class="info">
+                        <div class="year">1962<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2020</div>
+                        <div class="title">Canal Central</div>
+                        <div class="description" data-i18n="locations.aveiro.description">Traditional moliceiro boats share the waterway with new pedestrian routes and riverside cafes.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="handle">
-                        <span class="ba-chevron ba-left"></span>
-                        <div class="ba-bar"></div>
-                        <span class="ba-chevron ba-right"></span>
-                    </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="photo right">
-                <div class="info">
-                    <div class="year">1974<span class="and" data-i18n="year.connector">&</span>2014</div>
-                    <div class="title">Praia da Barra</div>
-                    <div class="description" data-i18n="locations.praia.description">View from the Barra Lighthouse. The Barra bridge is captured mid-construction.</div>
-                    <div class="share">
-                        <span class="share-text" data-i18n="share.label">Share</span>
-                        <ul class="footer-nav-items">
-                            <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
-                                <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                            <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
-                                <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
-                        </ul>
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
                     </div>
-                </div>
-                <div class="ba-slider">
-                    <img src="images/new.jpg" alt="">       
-                    <div class="resize">
-                    <img src="images/old.jpg" alt="">
-                    <div class="source">Eng.º Adelino Lopes</div>
+                    <div class="info">
+                        <div class="year">1955<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2018</div>
+                        <div class="title">Praça do Rossio</div>
+                        <div class="description" data-i18n="locations.rossio.description">A civic plaza that evolves from market stalls to a flexible public space for events and gatherings.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="handle">
-                        <span class="ba-chevron ba-left"></span>
-                        <div class="ba-bar"></div>
-                        <span class="ba-chevron ba-right"></span>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </article>
-        </div>
-        
+                    <div class="info">
+                        <div class="year">1974<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2014</div>
+                        <div class="title">Farol da Barra</div>
+                        <div class="description" data-i18n="locations.praia.description">View from the Barra Lighthouse. The Barra bridge is captured mid-construction.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">1962<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2020</div>
+                        <div class="title">Mercado de Peixe</div>
+                        <div class="description" data-i18n="locations.aveiro.description">Traditional moliceiro boats share the waterway with new pedestrian routes and riverside cafes.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">1955<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2018</div>
+                        <div class="title">Largo da Estação</div>
+                        <div class="description" data-i18n="locations.rossio.description">A civic plaza that evolves from market stalls to a flexible public space for events and gatherings.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">1974<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2014</div>
+                        <div class="title">Ponte da Barra</div>
+                        <div class="description" data-i18n="locations.praia.description">View from the Barra Lighthouse. The Barra bridge is captured mid-construction.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">1962<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2020</div>
+                        <div class="title">Cais das Pombas</div>
+                        <div class="description" data-i18n="locations.aveiro.description">Traditional moliceiro boats share the waterway with new pedestrian routes and riverside cafes.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">1955<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2018</div>
+                        <div class="title">Praça Nova</div>
+                        <div class="description" data-i18n="locations.rossio.description">A civic plaza that evolves from market stalls to a flexible public space for events and gatherings.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="photo">
+                    <div class="photo-frame">
+                        <div class="ba-slider">
+                                                <img src="images/new.jpg" alt="">
+                        <div class="resize">
+                          <img src="images/old.jpg" alt="">
+                          <div class="source">Eng.º Adelino Lopes</div>
+                        </div>
+                        <div class="handle">
+                            <div class="ba-chevron-container">
+                                <span class="ba-chevron ba-left"></span>
+                                <span class="ba-chevron ba-right"></span>
+                            </div>
+                            <div class="ba-bar"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="year">1974<span class="year-divider" aria-hidden="true"></span><span class="sr-only" data-i18n="year.connector">&</span>2014</div>
+                        <div class="title">Miradouro da Barra</div>
+                        <div class="description" data-i18n="locations.praia.description">View from the Barra Lighthouse. The Barra bridge is captured mid-construction.</div>
+                        <div class="share">
+                            <span class="share-text" data-i18n="share.label">Share</span>
+                            <ul class="footer-nav-items">
+                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                    <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
+                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                    <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+
         <footer class="main-footer" role="contentinfo">
             <a href="index.html" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
-                <img class="" src="images/overlapse.svg" height="40px" alt="Overlapse"></a>
+                <img src="images/overlapse.svg" height="40px" alt="Overlapse"></a>
             <span class="follow-us" data-i18n="follow.us">Follow Us</span>
             <ul class="footer-nav-items">
                 <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
