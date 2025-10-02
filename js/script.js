@@ -14,6 +14,7 @@ $(document).ready(function(){
   });
 
   initSliderAnimations(sliders);
+  initPhotoScrollEffects();
   initHeroHeaderVisibility();
   initLayoutSwitcher();
   initThemeToggle();
@@ -156,6 +157,182 @@ function isElementInViewport(el) {
     rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
     rect.bottom > 0
   );
+}
+
+function initPhotoScrollEffects() {
+  var photoNodes = document.querySelectorAll('.photo');
+  if (!photoNodes.length) {
+    return;
+  }
+
+  var items = [];
+  var itemsMap = typeof WeakMap === 'function' ? new WeakMap() : null;
+
+  photoNodes.forEach(function(photo) {
+    var frame = photo.querySelector('.photo-frame');
+    var info = photo.querySelector('.info');
+
+    if (!frame || !info) {
+      return;
+    }
+
+    photo.classList.add('photo--animated');
+
+    var item = {
+      photo: photo,
+      frame: frame,
+      info: info,
+      isInView: false,
+      hasAppeared: false
+    };
+
+    items.push(item);
+    if (itemsMap) {
+      itemsMap.set(photo, item);
+    }
+  });
+
+  if (!items.length) {
+    return;
+  }
+
+  var reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  var prefersReducedMotion = reduceMotionQuery ? reduceMotionQuery.matches : false;
+
+  if (prefersReducedMotion) {
+    items.forEach(function(item) {
+      item.photo.classList.add('is-visible');
+      item.frame.style.setProperty('--parallax-translate', '0px');
+      item.info.style.setProperty('--parallax-translate', '0px');
+    });
+    return;
+  }
+
+  var ticking = false;
+  var removeParallaxListeners = null;
+
+  var updateParallax = function() {
+    ticking = false;
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+
+    items.forEach(function(item) {
+      if (!item.isInView) {
+        item.frame.style.setProperty('--parallax-translate', '0px');
+        item.info.style.setProperty('--parallax-translate', '0px');
+        return;
+      }
+
+      var rect = item.photo.getBoundingClientRect();
+      var total = viewportHeight + rect.height;
+
+      if (total <= 0) {
+        return;
+      }
+
+      var progress = (viewportHeight - rect.top) / total;
+      if (progress < 0) {
+        progress = 0;
+      } else if (progress > 1) {
+        progress = 1;
+      }
+
+      var centered = progress - 0.5;
+      var frameOffset = -centered * 24;
+      var infoOffset = centered * 32;
+
+      item.frame.style.setProperty('--parallax-translate', frameOffset.toFixed(2) + 'px');
+      item.info.style.setProperty('--parallax-translate', infoOffset.toFixed(2) + 'px');
+    });
+  };
+
+  var requestParallaxUpdate = function() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateParallax);
+    }
+  };
+
+  var enableParallax = function() {
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+    window.addEventListener('resize', requestParallaxUpdate);
+    requestParallaxUpdate();
+    removeParallaxListeners = function() {
+      window.removeEventListener('scroll', requestParallaxUpdate);
+      window.removeEventListener('resize', requestParallaxUpdate);
+    };
+  };
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var item = itemsMap ? itemsMap.get(entry.target) : null;
+        if (!item) {
+          for (var i = 0; i < items.length; i += 1) {
+            if (items[i].photo === entry.target) {
+              item = items[i];
+              break;
+            }
+          }
+        }
+        if (!item) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          item.isInView = true;
+          if (!item.hasAppeared) {
+            item.photo.classList.add('is-visible');
+            item.hasAppeared = true;
+          }
+          requestParallaxUpdate();
+        } else {
+          item.isInView = false;
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -15% 0px'
+    });
+
+    items.forEach(function(item) {
+      observer.observe(item.photo);
+    });
+
+    enableParallax();
+  } else {
+    items.forEach(function(item) {
+      item.isInView = true;
+      item.photo.classList.add('is-visible');
+    });
+
+    enableParallax();
+  }
+
+  if (reduceMotionQuery) {
+    var handlePreferenceChange = function(event) {
+      if (!event.matches) {
+        return;
+      }
+
+      if (typeof removeParallaxListeners === 'function') {
+        removeParallaxListeners();
+        removeParallaxListeners = null;
+      }
+
+      items.forEach(function(item) {
+        item.isInView = false;
+        item.photo.classList.add('is-visible');
+        item.frame.style.setProperty('--parallax-translate', '0px');
+        item.info.style.setProperty('--parallax-translate', '0px');
+      });
+    };
+
+    if (typeof reduceMotionQuery.addEventListener === 'function') {
+      reduceMotionQuery.addEventListener('change', handlePreferenceChange);
+    } else if (typeof reduceMotionQuery.addListener === 'function') {
+      reduceMotionQuery.addListener(handlePreferenceChange);
+    }
+  }
 }
 
 function initHeroHeaderVisibility() {

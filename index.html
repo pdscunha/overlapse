@@ -144,10 +144,27 @@
 
         <main>
             <div class="layout-switcher" role="toolbar" aria-label="Layout options">
-                <button type="button" class="layout-switcher__button layout-switcher__button--active" data-layout="slots">Slots</button>
-                <button type="button" class="layout-switcher__button" data-layout="full-card">Full Card</button>
-                <button type="button" class="layout-switcher__button" data-layout="card">Card</button>
-                <button type="button" class="layout-switcher__button" data-layout="photo-corners">Photo Corners</button>
+                <button type="button" class="layout-switcher__button layout-switcher__button--active" data-layout="slots"><span class="sr-only">Slots</span></button>
+                <button type="button" class="layout-switcher__button" data-layout="full-card"><span class="sr-only">Full Card</span></button>
+                <button type="button" class="layout-switcher__button" data-layout="card" aria-label="Card layout">
+                    <svg class="layout-switcher__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                        <defs>
+                            <path id="mask-path" d="M13.75 0H1.25C.56 0 0 .56 0 1.25v8.5C0 10.44.56 11 1.25 11h12.5c.69 0 1.25-.56 1.25-1.25v-8.5C15 .56 14.44 0 13.75 0"/>
+                            <clipPath id="clip-mask" clipPathUnits="userSpaceOnUse">
+                                <use xlink:href="#mask-path" />
+                            </clipPath>
+                        </defs>
+                        <path id="moliceiro" fill="#000" d="M18.25 5A2.75 2.75 0 0 1 21 7.75v8.5A2.75 2.75 0 0 1 18.25 19H5.75A2.75 2.75 0 0 1 3 16.25v-8.5A2.75 2.75 0 0 1 5.75 5zm0 1.5H5.75c-.69 0-1.25.56-1.25 1.25v8.5c0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25v-8.5c0-.69-.56-1.25-1.25-1.25Z"/>
+                        <path id="frame" fill="#00000099" fill-rule="evenodd" d="M19.5 15.5C15 15.5 9 14 9 11q0-1 1.854-2.146A.44.44 0 0 0 11 8.5c0-.28-.22-.5-.5-.5-.18 0-4.5 2.25-4.5 4q0 3 4 5.5h8.25c.69 0 1.25-.56 1.25-1.25z"/>
+                        <g transform="translate(4.5 6.5)" clip-path="url(#clip-mask)">
+                            <g id="rotate">
+                                <path fill="#00000099" d="M10.5 6.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                                <path fill="#FFF" d="M9.856 25.394a2 2 0 1 1 2.538-2.538 2 2 0 0 0-2.56 2.472z"/>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <button type="button" class="layout-switcher__button" data-layout="photo-corners"><span class="sr-only">Photo Corners</span></button>
             </div>
 
             <div class="container" data-layout="slots">

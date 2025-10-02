@@ -243,12 +243,14 @@ footer {
     left: 50%;
     transform: translate(-50%, 16px);
     display: flex;
-    gap: 8px;
-    padding: 8px 12px;
+    gap: 4px;
+    padding: 8px;
     border-radius: 999px;
-    background-color: rgba(17, 17, 17, 0.8);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08),
+                0 0 0 1px rgba(0, 0, 0, 0.02);
     z-index: 5;
     opacity: 0;
     pointer-events: none;
@@ -260,20 +262,38 @@ footer {
 .layout-switcher__button {
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 999px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     cursor: pointer;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    opacity: 0.5;
     transition: background-color var(--duration-standard) var(--easing-standard),
-                color var(--duration-standard) var(--easing-standard);
+                box-shadow var(--duration-standard) var(--easing-standard),
+                opacity var(--duration-standard) var(--easing-standard);
+}
+
+.layout-switcher__icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    pointer-events: none;
+    color: rgba(0, 0, 0, 1);
+}
+
+#rotate {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    transition: transform var(--duration-standard) var(--easing-standard);
 }
 
 .layout-switcher__button:hover,
 .layout-switcher__button:focus {
-    color: #ffffff;
     background-color: rgba(255, 255, 255, 0.12);
+    opacity: 0.5;
     outline: none;
 }
 
@@ -282,8 +302,56 @@ footer {
 }
 
 .layout-switcher__button--active {
-    color: #111111;
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.16);
+    opacity: 1;
+}
+
+.layout-switcher__button--active .layout-switcher__icon {
+    color: rgba(0, 0, 0, 1);
+}
+
+.layout-switcher__button[data-layout="slots"] {
+    background-image: url('../images/slots.svg');
+}
+
+.layout-switcher__button[data-layout="full-card"] {
+    background-image: url('../images/full-card.svg');
+}
+
+.layout-switcher__button[data-layout="card"] {
+    background-image: none;
+}
+
+body.theme-dark .layout-switcher__button[data-layout="slots"] {
+    background-image: url('../images/slots-night.svg');
+}
+
+body.theme-dark .layout-switcher__button[data-layout="full-card"] {
+    background-image: url('../images/full-card-night.svg');
+}
+
+body.theme-dark .layout-switcher__button[data-layout="photo-corners"] {
+    background-image: url('../images/photo-corners-night.svg');
+}
+
+body.theme-dark .layout-switcher__button[data-layout="card"] .layout-switcher__icon {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+body.theme-dark .layout-switcher__button.layout-switcher__button--active[data-layout="card"] .layout-switcher__icon {
+    color: rgba(255, 255, 255, 1);
+}
+
+body.theme-dark #rotate {
+    transform: rotate(180deg);
+}
+
+body.theme-dark #moliceiro {
+    fill: #ffffff;
+}
+
+body.theme-dark #frame {
+    fill: #ffffff99;
 }
 
 .layout-switcher--visible {
@@ -722,6 +790,23 @@ span {
                 border-color var(--duration-standard) var(--easing-standard);
 }
 
+.photo--animated .photo-frame,
+.photo--animated .info {
+    --parallax-translate: 0px;
+    --reveal-translate: 32px;
+    transform: translate3d(0, calc(var(--reveal-translate) + var(--parallax-translate)), 0);
+    opacity: 0;
+    transition: transform 600ms var(--easing-standard),
+                opacity 400ms var(--easing-standard);
+    will-change: transform, opacity;
+}
+
+.photo--animated.is-visible .photo-frame,
+.photo--animated.is-visible .info {
+    --reveal-translate: 0px;
+    opacity: 1;
+}
+
 .photo-frame {
     position: relative;
     display: block;
@@ -743,6 +828,15 @@ span {
     align-items: center;
     text-align: center;
     gap: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .photo--animated .photo-frame,
+    .photo--animated .info {
+        transition: none;
+        transform: none;
+        opacity: 1;
+    }
 }
 
 .year {
@@ -1205,29 +1299,17 @@ body.theme-dark .map-container--fallback svg {
 
 @media (max-width: 1200px) {
     .container {
-        margin: 0 24px;
-    }
-
-    .container {
-        gap: 80px;
+        margin: 96px 24px;
     }
 }
 
 @media (max-width: 992px) {
     .container {
-        margin: 0 20px;
+        margin: 96px 24px;
     }
 
     .header {
         padding: 24px 24px;
-    }
-
-    .container {
-        gap: 80px;
-    }
-
-    .info {
-        margin-top: 28px;
     }
 
     .ba-slider {
@@ -1250,16 +1332,12 @@ body.theme-dark .map-container--fallback svg {
 
 @media (max-width: 768px) {
     .container {
-        margin: 0 12px;
+        margin: 72px 8px;
         gap: 80px;
     }
 
     .header {
         padding: 20px;
-    }
-
-    .info {
-        margin-top: 24px;
     }
 
     .ba-slider {
@@ -1333,7 +1411,7 @@ body.theme-dark .map-container--fallback svg {
     }
 
     .container {
-        margin: 0;
+        margin: 72px 8px;
         gap: 40px;
     }
 
@@ -1346,7 +1424,6 @@ body.theme-dark .map-container--fallback svg {
 
     .info {
         max-width: 100%;
-        margin-top: 16px;
     }
 
     .ba-slider {
@@ -1361,10 +1438,6 @@ body.theme-dark .map-container--fallback svg {
 
     .share {
         position: relative;
-    }
-
-    .year {
-        justify-content: center;
     }
 
     .about-page {
@@ -1427,41 +1500,6 @@ body.theme-dark .map-container--fallback svg {
 
 }
 
-@media (max-width: 360px) {
-    .title {
-        font-size: 24px;
-    }
-
-    .year {
-        font-size: 12px;
-    }
-
-    .share-text {
-        font-size: 12px;
-    }
-
-    .about-hero h1 {
-        font-size: 28px;
-    }
-
-    .about-cta h2 {
-        font-size: 22px;
-    }
-
-    .map-page {
-        padding: 0;
-    }
-
-    .map-container {
-        border-radius: 0;
-        min-height: 100%;
-    }
-
-    .map-container .map-zoom-control {
-        left: 12px;
-    }
-
-}
 .theme-toggle--active .theme-toggle__roller {
     transform: translateY(-16px);
 }
