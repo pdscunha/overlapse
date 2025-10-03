@@ -32,7 +32,7 @@
       home: {
         hero: {
           title: 'Where past meets present',
-          subtitle: 'Going back in time without a DeLorean'
+          subtitle: "Discover how Aveiro's spaces have transformed over time. Compare images side by side and follow the city's evolution."
         }
       },
       locations: {
@@ -122,8 +122,8 @@
       },
       home: {
         hero: {
-          title: 'Onde o passado<br>encontra o presente',
-          subtitle: 'Viajar no tempo sem um DeLorean'
+          title: 'Onde o passado encontra o presente',
+          subtitle: 'Descubra como os espaços de Aveiro se transformaram ao longo do tempo. Compare imagens lado a lado e acompanhe a transformação da cidade.'
         }
       },
       year: {

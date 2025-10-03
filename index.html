@@ -28,6 +28,7 @@
     </head>
 
     <body>
+        <div class="page">
         <script>
             (function () {
                 var storageKey = 'overlapse-theme';
@@ -47,16 +48,18 @@
             })();
         </script>
         <header class="header">
-            <nav role="main-nav">
-                <ul class="main-nav-items main-nav-items--primary">
-                    <li class="navigation-item"><a class="navigation-link" href="about.html" data-i18n="nav.about">About</a></li>
-                    <li class="navigation-item"><a class="navigation-link" href="map.html" data-i18n="nav.map">Map</a></li>
-                </ul>
-            </nav>
-            <a href="index.html" class="logo" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
-                <img src="images/overlapse.svg" alt="Overlapse">
-            </a>
-            <div class="header__actions">
+            <div class="header__cluster header__cluster--primary">
+                <a href="index.html" class="logo" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
+                    <img src="images/overlapse.svg" alt="Overlapse">
+                </a>
+                <nav role="main-nav" class="header__nav">
+                    <ul class="main-nav-items main-nav-items--primary">
+                        <li class="navigation-item"><a class="navigation-link" href="about.html" data-i18n="nav.about">About</a></li>
+                        <li class="navigation-item"><a class="navigation-link" href="map.html" data-i18n="nav.map">Map</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__cluster header__cluster--secondary">
                 <ul class="main-nav-items main-nav-items--actions header__actions-list">
                     <li class="navigation-item navigation-item--action">
                         <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
@@ -92,53 +95,9 @@
         </header>
 
         <section class="hero" style="--hero-image: url('../images/hero.jpg');">
-            <div class="hero-nav">
-                <nav role="main-nav" class="hero-nav__primary">
-                    <ul class="main-nav-items main-nav-items--primary">
-                        <li class="navigation-item"><a class="navigation-link" href="about.html" data-i18n="nav.about">About</a></li>
-                        <li class="navigation-item"><a class="navigation-link" href="map.html" data-i18n="nav.map">Map</a></li>
-                    </ul>
-                </nav>
-                <a href="index.html" class="hero-nav__logo" title="Overlapse Home" data-i18n-attrs="title" data-i18n-title="logo.title">
-                    <img src="images/logo-dark.svg" alt="Overlapse">
-                </a>
-                <div class="hero-nav__actions">
-                    <ul class="main-nav-items main-nav-items--actions hero-nav__actions-list">
-                        <li class="navigation-item navigation-item--action">
-                            <a class="project-detail-summing__social-link" href="https://www.facebook.com/overlapseproject" target="_blank" title="Open Facebook page" aria-label="Open Facebook page" data-i18n-attrs="title,aria-label" data-i18n-title="social.facebook" data-i18n-aria-label="social.facebook">
-                                <p class="sr-only" data-i18n="social.facebook">Open Facebook page</p>
-                                <span class="icon icon--facebook-button"></span>
-                            </a>
-                        </li>
-                        <li class="navigation-item navigation-item--action">
-                            <a class="project-detail-summing__social-link" href="https://www.instagram.com/overlapseproject/" target="_blank" title="Open Instagram page" aria-label="Open Instagram page" data-i18n-attrs="title,aria-label" data-i18n-title="social.instagram" data-i18n-aria-label="social.instagram">
-                                <p class="sr-only" data-i18n="social.instagram">Open Instagram page</p>
-                                <span class="icon icon--instagram-button"></span>
-                            </a>
-                        </li>
-                        <li class="navigation-item navigation-item--action">
-                            <a class="project-detail-summing__social-link" href="https://twitter.com/overlapseproject" target="_blank" title="Open Twitter page" aria-label="Open Twitter page" data-i18n-attrs="title,aria-label" data-i18n-title="social.twitter" data-i18n-aria-label="social.twitter">
-                                <p class="sr-only" data-i18n="social.twitter">Open Twitter page</p>
-                                <span class="icon icon--twitter-button"></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <button type="button" class="theme-toggle theme-toggle--hero" aria-label="Toggle dark mode">
-                        <span class="theme-toggle__window">
-                            <span class="theme-toggle__static">ƒ/</span>
-                            <span class="theme-toggle__value">
-                                <span class="theme-toggle__value-inner">
-                                    <span class="theme-toggle__value-item theme-toggle__value-item--light">0.95</span>
-                                    <span class="theme-toggle__value-item theme-toggle__value-item--dark">16</span>
-                                </span>
-                            </span>
-                        </span>
-                    </button>
-                </div>
-            </div>
             <div class="hero__inner">
                 <h1 class="hero__title" data-i18n="home.hero.title">Where past meets present</h1>
-                <p class="hero__subtitle" data-i18n="home.hero.subtitle">Going back in time without a DeLorean</p>
+                <p class="hero__subtitle" data-i18n="home.hero.subtitle">Discover how Aveiro's spaces have transformed over time. Compare images side by side and follow the city's evolution.</p>
             </div>
         </section>
 
@@ -516,5 +475,6 @@
         </footer>
         <script type="text/javascript" src="js/i18n.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
+        </div>
     </body>
 </html>
