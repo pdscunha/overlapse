@@ -218,17 +218,25 @@ function initPhotoScrollEffects() {
 
     items.forEach(function(item) {
       var rect = item.photo.getBoundingClientRect();
-      var viewportMid = viewportHeight / 2;
-      var cardMid = rect.top + rect.height / 2;
-      var delta = (viewportMid - cardMid) / viewportHeight;
-      if (delta > 1) {
-        delta = 1;
-      } else if (delta < -1) {
-        delta = -1;
+      var total = viewportHeight + rect.height;
+
+      if (total <= 0) {
+        item.frame.style.setProperty('--parallax-translate', '0px');
+        item.info.style.setProperty('--parallax-translate', '0px');
+        return;
       }
 
-      var frameOffset = delta * 16;
-      var infoOffset = delta * 32;
+      var progress = (viewportHeight - rect.top) / total;
+      if (progress <= 0 || progress >= 1) {
+        item.frame.style.setProperty('--parallax-translate', '0px');
+        item.info.style.setProperty('--parallax-translate', '0px');
+        return;
+      }
+
+      var centered = progress - 0.5;
+      var influence = progress * (1 - progress) * 4;
+      var frameOffset = -centered * 24 * influence;
+      var infoOffset = centered * 32 * influence;
 
       item.frame.style.setProperty('--parallax-translate', frameOffset.toFixed(2) + 'px');
       item.info.style.setProperty('--parallax-translate', infoOffset.toFixed(2) + 'px');
@@ -369,6 +377,11 @@ function initHeroHeaderVisibility() {
     var scrollY = window.scrollY || window.pageYOffset || 0;
     var shouldFix = scrollY >= gutter;
     header.classList.toggle('header--fixed', shouldFix);
+    if (shouldFix) {
+      header.style.top = gutter + 'px';
+    } else {
+      header.style.top = Math.max(gutter - scrollY, 0) + 'px';
+    }
   };
 
   var updateLogoState = function() {
