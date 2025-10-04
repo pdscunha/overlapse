@@ -377,11 +377,6 @@ function initHeroHeaderVisibility() {
     var scrollY = window.scrollY || window.pageYOffset || 0;
     var shouldFix = scrollY >= gutter;
     header.classList.toggle('header--fixed', shouldFix);
-    if (shouldFix) {
-      header.style.top = gutter + 'px';
-    } else {
-      header.style.top = Math.max(gutter - scrollY, 0) + 'px';
-    }
   };
 
   var updateLogoState = function() {
