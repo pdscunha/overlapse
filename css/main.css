@@ -147,6 +147,11 @@ body.theme-dark footer {
     margin-right: 4px;
 }
 
+.theme-toggle__window {
+    display: flex;
+    align-items: center;
+}
+
 
 .theme-toggle__value {
     font-size: 13px;
@@ -155,24 +160,34 @@ body.theme-dark footer {
     letter-spacing: 0.04em;
     color: rgba(17, 17, 17, 0.78);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     line-height: 1;
     position: relative;
     overflow: hidden;
     height: 16px;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 25%, #000 75%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 25%, #000 75%, transparent 100%);
 }
 
 .theme-toggle__value-inner {
     --aperture-index: 0;
+    --aperture-count: 1;
     display: flex;
     flex-direction: column;
-    transform: translateY(calc(-100% * var(--aperture-index)));
-    transition: transform var(--aperture-duration) steps(var(--aperture-steps), end);
+    transform: translateY(calc(-100% * var(--aperture-index) / var(--aperture-count)));
+    filter: blur(0);
+    transition: transform 300ms var(--easing-standard),
+                filter 120ms var(--easing-standard);
+}
+
+.theme-toggle--animating .theme-toggle__value-inner {
+    filter: blur(2px);
 }
 
 .theme-toggle__value-item {
     min-height: 16px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     text-align: left;
     padding: 0 1px;
 }
@@ -794,7 +809,7 @@ span {
 
 .photo--animated {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.95);
     transition: opacity 300ms var(--easing-standard),
                 transform 300ms var(--easing-standard);
     will-change: opacity, transform;

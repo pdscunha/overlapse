@@ -292,8 +292,7 @@ function initPhotoScrollEffects() {
         }
       });
     }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -15% 0px'
+      threshold: 0.1
     });
 
     items.forEach(function(item) {
@@ -379,30 +378,17 @@ function initHeroHeaderVisibility() {
     header.classList.toggle('header--fixed', shouldFix);
   };
 
-  var updateLogoState = function() {
-    if (!hero || !logo) {
-      return;
-    }
-    var heroRect = hero.getBoundingClientRect();
-    var headerHeight = header.offsetHeight;
-    var shouldCollapse = heroRect.bottom <= headerHeight + gutter;
-    logo.classList.toggle('logo--collapsed', shouldCollapse);
-  };
-
   var handleResize = function() {
     gutter = getGutter();
     measureLogoWidth();
     updateHeaderPosition();
-    updateLogoState();
   };
 
   measureLogoWidth();
   updateHeaderPosition();
-  updateLogoState();
 
   window.addEventListener('scroll', function() {
     updateHeaderPosition();
-    updateLogoState();
   }, { passive: true });
   window.addEventListener('resize', handleResize);
   window.addEventListener('orientationchange', handleResize);
@@ -546,6 +532,9 @@ function initThemeToggle() {
   var hasExplicitPreference = !!storedTheme;
 
   var stops = ['0.95', '1.2', '1.4', '2', '2.8', '4', '5.6', '8', '11', '16'];
+  var reelTransitionMs = 300;
+  var reelBlurFadeMs = 140;
+  var reelDelayStep = 90;
 
   toggles.forEach(function(btn) {
     var inner = btn.querySelector('.theme-toggle__value-inner');
@@ -556,6 +545,7 @@ function initThemeToggle() {
       return '<span class="theme-toggle__value-item">' + stop + '</span>';
     }).join('');
     inner.style.setProperty('--aperture-steps', stops.length - 1);
+    inner.style.setProperty('--aperture-count', stops.length);
     inner.dataset.initialized = 'true';
   });
 
@@ -573,16 +563,28 @@ function initThemeToggle() {
         return;
       }
 
+      if (btn._reelTimeouts) {
+        btn._reelTimeouts.forEach(function(timerId) {
+          clearTimeout(timerId);
+        });
+      }
+      btn._reelTimeouts = [];
+
       if (!animate) {
         inner.style.transition = 'none';
         inner.style.setProperty('--aperture-index', index);
         void inner.offsetHeight;
         inner.style.transition = '';
+        btn.classList.remove('theme-toggle--animating');
       } else {
-        var delay = idx * 90;
-        setTimeout(function() {
+        var delay = idx * reelDelayStep;
+        btn.classList.add('theme-toggle--animating');
+        btn._reelTimeouts.push(setTimeout(function() {
           inner.style.setProperty('--aperture-index', index);
-        }, delay);
+        }, delay));
+        btn._reelTimeouts.push(setTimeout(function() {
+          btn.classList.remove('theme-toggle--animating');
+        }, delay + Math.max(0, reelTransitionMs - reelBlurFadeMs)));
       }
     });
   };
