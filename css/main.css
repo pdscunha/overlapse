@@ -122,7 +122,7 @@ body.theme-dark footer {
     align-items: center;
     overflow: hidden;
     background-color: #F4F3F2;
-    border-radius: 20px 20px 0 0;
+    border-radius: 52px 52px 0 0;
 }
 
 .theme-toggle {
@@ -377,6 +377,14 @@ body.theme-dark #frame {
     background-repeat: no-repeat;
 }
 
+.hero--video::before {
+    background-image: none;
+}
+
+.hero--video {
+    --hero-image: url('../images/hero.jpg');
+}
+
 .hero::after {
     opacity: 1;
     background-image: linear-gradient(180deg, rgba(244,243,242,0.88) 50%, #F4F3F2 100%);
@@ -398,6 +406,26 @@ body.theme-dark #frame {
     transform: translateY(32px);
     transition: opacity 400ms var(--easing-standard),
                 transform 400ms var(--easing-standard);
+}
+
+.hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__video {
+        display: none;
+    }
+
+    .hero--video::before {
+        background-image: var(--hero-image, url('../images/hero.jpg'));
+    }
 }
 
 .hero__title--visible {
@@ -508,10 +536,10 @@ body.theme-dark .hero__subtitle {
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
-    background: linear-gradient(180deg, rgba(255,255,255,0.00), rgba(0,0,0,0.04), rgba(255,255,255,0.00));
+    background: linear-gradient(180deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.80) 50%, 255,255,255,0.48) 100%);
     background-size: 100% 200%;
     background-position: 0% 0%;
-    box-shadow: inset 0 0 0px 1px rgba(0,0,0,0.08), inset 0 -2px 4px 0 rgba(0,0,0,0.08), inset 0 0 1px 2px rgba(255,255,255,0.16);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px 0 rgba(0,0,0,0.04), inset 1px 2px 2px -1px #FFFFFF, inset -1px -2px 2px -1px rgba(255,255,255,0.48), inset 0 -2px 8px -2px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: background-color var(--duration-fast) var(--easing-standard),
                 border-color var(--duration-fast) var(--easing-standard),
@@ -523,13 +551,13 @@ body.theme-dark .hero__subtitle {
 .main-nav-items .navigation-link:hover,
 .header__nav .navigation-link:hover,
 .header__cluster .navigation-link:hover {
-    box-shadow: inset 0 0 0px 1px rgba(0,0,0,0.16), inset 0 -2px 4px 0 rgba(0,0,0,0.16), inset 0 0 1px 2px rgba(255,255,255,0.16);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px 0 rgba(0,0,0,0.08), inset 1px 2px 2px -1px #FFFFFF, inset -1px -2px 2px -1px rgba(255,255,255,0.48), inset 0 -2px 8px -2px rgba(0,0,0,0.16);
 }
 
 .main-nav-items .navigation-link:active,
 .header__nav .navigation-link:active,
 .header__cluster .navigation-link:active {
-    box-shadow: inset 0 0 0px 1px rgba(0,0,0,0.08), inset 0 -2px 4px 0 rgba(0,0,0,0.08), inset 0 0 1px 2px rgba(255,255,255,0.16);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 0 0 rgba(0,0,0,0), inset 1px 2px 2px -1px #FFFFFF, inset -1px -2px 2px -1px rgba(255,255,255,0.48), inset 0 -2px 8px -2px rgba(0,0,0,0.16);
     color: #0000007A;
     background-position: 0% 100%;
     transform: scale(0.98);
