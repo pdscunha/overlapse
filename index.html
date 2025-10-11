@@ -103,28 +103,126 @@
         </section>
 
         <main>
-            <div class="layout-switcher" role="toolbar" aria-label="Layout options">
-                <button type="button" class="layout-switcher__button layout-switcher__button--active" data-layout="slots"><span class="sr-only">Slots</span></button>
-                <button type="button" class="layout-switcher__button" data-layout="full-card"><span class="sr-only">Full Card</span></button>
-                <button type="button" class="layout-switcher__button" data-layout="card" aria-label="Card layout">
-                    <svg class="layout-switcher__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <div class="layout-switcher" role="radiogroup" aria-label="Layout options">
+                <input type="radio" class="layout-switcher__input" name="layout-switcher" id="layout-switcher-slots" value="slots" checked>
+                <label for="layout-switcher-slots" class="layout-switcher__button" data-layout="slots">
+                    <span class="sr-only">Slots</span>
+                    <svg class="layout-switcher__icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs>
-                            <path id="mask-path" d="M13.75 0H1.25C.56 0 0 .56 0 1.25v8.5C0 10.44.56 11 1.25 11h12.5c.69 0 1.25-.56 1.25-1.25v-8.5C15 .56 14.44 0 13.75 0"/>
-                            <clipPath id="clip-mask" clipPathUnits="userSpaceOnUse">
-                                <use xlink:href="#mask-path" />
-                            </clipPath>
+                            <linearGradient id="layout-switcher-gradient-linear-slots" x1="50%" x2="50%" y1="0%" y2="98.148%">
+                                <stop offset="0%" stop-color="var(--layout-switcher-gradient-linear-start, #101B3B)" />
+                                <stop offset="100%" stop-color="var(--layout-switcher-gradient-linear-end, #758AC8)" />
+                            </linearGradient>
+                            <path id="layout-switcher-outline-slots" d="M6.368 6.002 21.436 6c.892 0 1.215.093 1.54.267.327.174.583.43.757.756.174.326.267.65.267 1.54v10.873c0 .892-.093 1.215-.267 1.54-.174.327-.43.583-.756.757-.326.174-.65.267-1.54.267H6.563c-.892 0-1.215-.093-1.54-.267a1.817 1.817 0 0 1-.757-.756c-.16-.301-.252-.6-.265-1.345L4 8.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.301-.16.6-.252 1.345-.265Z" />
                         </defs>
-                        <path id="moliceiro" fill="#000" d="M18.25 5A2.75 2.75 0 0 1 21 7.75v8.5A2.75 2.75 0 0 1 18.25 19H5.75A2.75 2.75 0 0 1 3 16.25v-8.5A2.75 2.75 0 0 1 5.75 5zm0 1.5H5.75c-.69 0-1.25.56-1.25 1.25v8.5c0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25v-8.5c0-.69-.56-1.25-1.25-1.25Z"/>
-                        <path id="frame" fill="#00000099" fill-rule="evenodd" d="M19.5 15.5C15 15.5 9 14 9 11q0-1 1.854-2.146A.44.44 0 0 0 11 8.5c0-.28-.22-.5-.5-.5-.18 0-4.5 2.25-4.5 4q0 3 4 5.5h8.25c.69 0 1.25-.56 1.25-1.25z"/>
-                        <g transform="translate(4.5 6.5)" clip-path="url(#clip-mask)">
-                            <g id="rotate">
-                                <path fill="#00000099" d="M10.5 6.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-                                <path fill="#FFF" d="M9.856 25.394a2 2 0 1 1 2.538-2.538 2 2 0 0 0-2.56 2.472z"/>
-                            </g>
+                        <g fill="none">
+                            <path class="frame" fill="var(--frame)" stroke="rgba(0,0,0,0.05)" stroke-width="1" d="M7.128 4h13.744c1.783 0 2.43.186 3.082.534.652.349 1.163.86 1.512 1.512.348.652.534 1.299.534 3.082v9.744c0 1.783-.186 2.43-.534 3.082a3.635 3.635 0 0 1-1.512 1.512c-.652.348-1.299.534-3.082.534H7.128c-1.783 0-2.43-.186-3.082-.534a3.635 3.635 0 0 1-1.512-1.512c-.33-.618-.514-1.23-.532-2.81L2 9.128c0-1.783.186-2.43.534-3.082a3.635 3.635 0 0 1 1.512-1.512C4.698 4.186 5.345 4 7.128 4Z" />
+                            <use xlink:href="#layout-switcher-outline-slots" href="#layout-switcher-outline-slots" fill="url(#layout-switcher-gradient-linear-slots)" />
+                            <path fill="var(--border)" fill-opacity=".5" d="M14 6c.822 0 1.51.566 1.7 1.33l.01.054.101.049a4.001 4.001 0 0 1 2.184 3.367L18 11v3.17l.054.025c.522.27.89.796.94 1.411l.006.144c0 .242-.049.472-.138.681l-.033.069h.671a1.5 1.5 0 0 1 1.44 1.079l.017.07.097.046c.522.27.89.796.94 1.411l.006.144c0 .518-.227.99-.593 1.313l-.082.065-.019.119c-.04.242-.138.465-.28.654l-.026.031v.569H7v-.57l-.026-.03a1.497 1.497 0 0 1-.249-.511l-.031-.143-.02-.119-.08-.065a1.747 1.747 0 0 1-.587-1.159L6 19.25c0-.677.384-1.263.946-1.555l.096-.046.018-.07a1.501 1.501 0 0 1 1.296-1.072L8.5 16.5h.67l-.032-.069a1.74 1.74 0 0 1-.132-.537L9 15.75c0-.677.384-1.263.946-1.555L10 14.17V11c0-1.54.876-2.901 2.189-3.568l.1-.048.012-.055a1.751 1.751 0 0 1 1.555-1.323L14 6Z" />
+                            <path fill="#D7CDC3" fill-rule="evenodd" d="M9 22v-2h10v2z" />
+                            <path fill="#977C61" d="M19.5 17.5a.5.5 0 0 1 .5.5v.5h.25a.75.75 0 0 1 .158 1.483v.058l-.088.541a.5.5 0 0 1-.319.387L20 22h-1v-2h-2v.5a.5.5 0 1 1-1 0V20h-1.5v.5a.5.5 0 1 1-1 0V20H12v.5a.5.5 0 1 1-1 0V20H9v2H8l-.001-1.031a.5.5 0 0 1-.319-.387l-.083-.5a.502.502 0 0 1-.007-.1.75.75 0 0 1 .16-1.481l.25-.001V18a.5.5 0 0 1 .5-.5h11Z" />
+                            <path fill="#C9A582" fill-rule="evenodd" d="M11.508 19.91a.5.5 0 0 1 .402-.402L12 19.5h1.5a.5.5 0 0 1 .492.41L14 20l.008-.089a.5.5 0 0 1 .402-.402l.09-.008H16a.5.5 0 0 1 .492.41L16.5 20l.008-.089a.5.5 0 0 1 .402-.402L17 19.5h2a.5.5 0 0 1 .5.5l.001.968a.5.5 0 0 1 .325-.468l.082-.46v-.057a.5.5 0 0 1 .395-.489.25.25 0 0 0-.053-.494H20a.5.5 0 0 1-.5-.5V18h-11v.5a.5.5 0 0 1-.5.5h-.25a.25.25 0 0 0-.25.25c0 .118.082.218.193.242a.5.5 0 0 1 .397.507l.084.501.08.038a.5.5 0 0 1 .245.43v.532L8.5 20a.5.5 0 0 1 .41-.492L9 19.5h2a.5.5 0 0 1 .492.41L11.5 20l.008-.089Z" />
+                            <path fill="#C93658" fill-rule="evenodd" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Z" />
+                            <path fill="#FFF" fill-opacity=".25" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Zm0 .5a.25.25 0 0 0-.227.351.5.5 0 0 1-.335.712A2.501 2.501 0 0 0 11.5 11v4a.5.5 0 0 1-.5.5h-.25a.25.25 0 1 0 0 .5H11a.5.5 0 0 1 .5.5v.5h5v-.5a.5.5 0 0 1 .41-.492L17 16h.25a.25.25 0 1 0 0-.5H17a.5.5 0 0 1-.5-.5v-4a2.498 2.498 0 0 0-1.937-2.435.5.5 0 0 1-.338-.706A.25.25 0 0 0 14 7.5Z" />
+                            <path fill="#FFF" fill-rule="evenodd" d="M16 13.875V15h-.875v-1.125H16Zm-3.125 0V15H12v-1.125h.875Zm2 0V15h-1.75v-1.125h1.75Zm0-1.5v1.25h-1.75v-1.25h1.75Zm1.125 0v1.25h-.875v-1.25H16ZM14.875 11v1.125h-1.75V11h1.75ZM16 11v1.125h-.875V11H16Zm-3.125 0v1.125H12V11h.875ZM12 12.375h.875v1.25H12v-1.25Z" />
+                            <path fill="#000" fill-opacity=".25" d="M18.75 18.625a.125.125 0 1 1 0 .25h-9.5a.125.125 0 1 1 0-.25h9.5Z" />
+                            <circle class="frame-glint" cx="21.5" cy="14.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".5" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="6.5" cy="13.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".75" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="8.5" cy="9.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" style="mix-blend-mode:screen" />
+                            <path fill="#FFF" fill-opacity=".75" fill-rule="evenodd" d="M20.644 8.106a2 2 0 1 1-2.538 2.538 2 2 0 0 0 2.56-2.472Z" style="mix-blend-mode:screen" />
                         </g>
                     </svg>
-                </button>
-                <button type="button" class="layout-switcher__button" data-layout="photo-corners"><span class="sr-only">Photo Corners</span></button>
+                </label>
+                <input type="radio" class="layout-switcher__input" name="layout-switcher" id="layout-switcher-full-card" value="full-card">
+                <label for="layout-switcher-full-card" class="layout-switcher__button" data-layout="full-card">
+                    <span class="sr-only">Full Card</span>
+                    <svg class="layout-switcher__icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <linearGradient id="layout-switcher-gradient-linear-full" x1="50%" x2="50%" y1="0%" y2="98.148%">
+                                <stop offset="0%" stop-color="var(--layout-switcher-gradient-linear-start, #101B3B)" />
+                                <stop offset="100%" stop-color="var(--layout-switcher-gradient-linear-end, #758AC8)" />
+                            </linearGradient>
+                            <path id="layout-switcher-outline-full" d="M6.368 6.002 21.436 6c.892 0 1.215.093 1.54.267.327.174.583.43.757.756.174.326.267.65.267 1.54v10.873c0 .892-.093 1.215-.267 1.54-.174.327-.43.583-.756.757-.326.174-.65.267-1.54.267H6.563c-.892 0-1.215-.093-1.54-.267a1.817 1.817 0 0 1-.757-.756c-.16-.301-.252-.6-.265-1.345L4 8.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.301-.16.6-.252 1.345-.265Z" />
+                        </defs>
+                        <g fill="none">
+                            <path class="frame" fill="var(--frame)" stroke="rgba(0,0,0,0.05)" stroke-width="1" d="M7.128 4h13.744c1.783 0 2.43.186 3.082.534.652.349 1.163.86 1.512 1.512.348.652.534 1.299.534 3.082v9.744c0 1.783-.186 2.43-.534 3.082a3.635 3.635 0 0 1-1.512 1.512c-.652.348-1.299.534-3.082.534H7.128c-1.783 0-2.43-.186-3.082-.534a3.635 3.635 0 0 1-1.512-1.512c-.33-.618-.514-1.23-.532-2.81L2 9.128c0-1.783.186-2.43.534-3.082a3.635 3.635 0 0 1 1.512-1.512C4.698 4.186 5.345 4 7.128 4Z" />
+                            <use xlink:href="#layout-switcher-outline-full" href="#layout-switcher-outline-full" fill="url(#layout-switcher-gradient-linear-full)" />
+                            <path fill="var(--border)" fill-opacity=".5" d="M14 6c.822 0 1.51.566 1.7 1.33l.01.054.101.049a4.001 4.001 0 0 1 2.184 3.367L18 11v3.17l.054.025c.522.27.89.796.94 1.411l.006.144c0 .242-.049.472-.138.681l-.033.069h.671a1.5 1.5 0 0 1 1.44 1.079l.017.07.097.046c.522.27.89.796.94 1.411l.006.144c0 .518-.227.99-.593 1.313l-.082.065-.019.119c-.04.242-.138.465-.28.654l-.026.031v.569H7v-.57l-.026-.03a1.497 1.497 0 0 1-.249-.511l-.031-.143-.02-.119-.08-.065a1.747 1.747 0 0 1-.587-1.159L6 19.25c0-.677.384-1.263.946-1.555l.096-.046.018-.07a1.501 1.501 0 0 1 1.296-1.072L8.5 16.5h.67l-.032-.069a1.74 1.74 0 0 1-.132-.537L9 15.75c0-.677.384-1.263.946-1.555L10 14.17V11c0-1.54.876-2.901 2.189-3.568l.1-.048.012-.055a1.751 1.751 0 0 1 1.555-1.323L14 6Z" />
+                            <path fill="#D7CDC3" fill-rule="evenodd" d="M9 22v-2h10v2z" />
+                            <path fill="#977C61" d="M19.5 17.5a.5.5 0 0 1 .5.5v.5h.25a.75.75 0 0 1 .158 1.483v.058l-.088.541a.5.5 0 0 1-.319.387L20 22h-1v-2h-2v.5a.5.5 0 1 1-1 0V20h-1.5v.5a.5.5 0 1 1-1 0V20H12v.5a.5.5 0 1 1-1 0V20H9v2H8l-.001-1.031a.5.5 0 0 1-.319-.387l-.083-.5a.502.502 0 0 1-.007-.1.75.75 0 0 1 .16-1.481l.25-.001V18a.5.5 0 0 1 .5-.5h11Z" />
+                            <path fill="#C9A582" fill-rule="evenodd" d="M11.508 19.91a.5.5 0 0 1 .402-.402L12 19.5h1.5a.5.5 0 0 1 .492.41L14 20l.008-.089a.5.5 0 0 1 .402-.402l.09-.008H16a.5.5 0 0 1 .492.41L16.5 20l.008-.089a.5.5 0 0 1 .402-.402L17 19.5h2a.5.5 0 0 1 .5.5l.001.968a.5.5 0 0 1 .325-.468l.082-.46v-.057a.5.5 0 0 1 .395-.489.25.25 0 0 0-.053-.494H20a.5.5 0 0 1-.5-.5V18h-11v.5a.5.5 0 0 1-.5.5h-.25a.25.25 0 0 0-.25.25c0 .118.082.218.193.242a.5.5 0 0 1 .397.507l.084.501.08.038a.5.5 0 0 1 .245.43v.532L8.5 20a.5.5 0 0 1 .41-.492L9 19.5h2a.5.5 0 0 1 .492.41L11.5 20l.008-.089Z" />
+                            <path fill="#C93658" fill-rule="evenodd" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Z" />
+                            <path fill="#FFF" fill-opacity=".25" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Zm0 .5a.25.25 0 0 0-.227.351.5.5 0 0 1-.335.712A2.501 2.501 0 0 0 11.5 11v4a.5.5 0 0 1-.5.5h-.25a.25.25 0 1 0 0 .5H11a.5.5 0 0 1 .5.5v.5h5v-.5a.5.5 0 0 1 .41-.492L17 16h.25a.25.25 0 1 0 0-.5H17a.5.5 0 0 1-.5-.5v-4a2.498 2.498 0 0 0-1.937-2.435.5.5 0 0 1-.338-.706A.25.25 0 0 0 14 7.5Z" />
+                            <path fill="#FFF" fill-rule="evenodd" d="M16 13.875V15h-.875v-1.125H16Zm-3.125 0V15H12v-1.125h.875Zm2 0V15h-1.75v-1.125h1.75Zm0-1.5v1.25h-1.75v-1.25h1.75Zm1.125 0v1.25h-.875v-1.25H16ZM14.875 11v1.125h-1.75V11h1.75ZM16 11v1.125h-.875V11H16Zm-3.125 0v1.125H12V11h.875ZM12 12.375h.875v1.25H12v-1.25Z" />
+                            <path fill="#000" fill-opacity=".25" d="M18.75 18.625a.125.125 0 1 1 0 .25h-9.5a.125.125 0 1 1 0-.25h9.5Z" />
+                            <circle class="frame-glint" cx="21.5" cy="14.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".5" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="6.5" cy="13.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".75" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="8.5" cy="9.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" style="mix-blend-mode:screen" />
+                            <path fill="#FFF" fill-opacity=".75" fill-rule="evenodd" d="M20.644 8.106a2 2 0 1 1-2.538 2.538 2 2 0 0 0 2.56-2.472Z" style="mix-blend-mode:screen" />
+                            <path class="layout-switcher__glow" fill="#F4EFE9" fill-opacity=".5" fill-rule="evenodd" d="m4 10 8 1h4l8-1v6l-8-1h-4l-8 1z" style="mix-blend-mode:screen" />
+                        </g>
+                    </svg>
+                </label>
+                <input type="radio" class="layout-switcher__input" name="layout-switcher" id="layout-switcher-card" value="card">
+                <label for="layout-switcher-card" class="layout-switcher__button" data-layout="card">
+                    <span class="sr-only">Card layout</span>
+                    <svg class="layout-switcher__icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <linearGradient id="layout-switcher-gradient-linear-card" x1="50%" x2="50%" y1="0%" y2="98.148%">
+                                <stop offset="0%" stop-color="var(--layout-switcher-gradient-linear-start, #101B3B)" />
+                                <stop offset="100%" stop-color="var(--layout-switcher-gradient-linear-end, #758AC8)" />
+                            </linearGradient>
+                            <path id="layout-switcher-outline-card" d="M6.368 6.002 21.436 6c.892 0 1.215.093 1.54.267.327.174.583.43.757.756.174.326.267.65.267 1.54v10.873c0 .892-.093 1.215-.267 1.54-.174.327-.43.583-.756.757-.326.174-.65.267-1.54.267H6.563c-.892 0-1.215-.093-1.54-.267a1.817 1.817 0 0 1-.757-.756c-.16-.301-.252-.6-.265-1.345L4 8.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.301-.16.6-.252 1.345-.265Z" />
+                        </defs>
+                        <g fill="none">
+                            <path class="frame" fill="var(--frame)" stroke="rgba(0,0,0,0.05)" stroke-width="1" d="M7.128 4h13.744c1.783 0 2.43.186 3.082.534.652.349 1.163.86 1.512 1.512.348.652.534 1.299.534 3.082v9.744c0 1.783-.186 2.43-.534 3.082a3.635 3.635 0 0 1-1.512 1.512c-.652.348-1.299.534-3.082.534H7.128c-1.783 0-2.43-.186-3.082-.534a3.635 3.635 0 0 1-1.512-1.512c-.33-.618-.514-1.23-.532-2.81L2 9.128c0-1.783.186-2.43.534-3.082a3.635 3.635 0 0 1 1.512-1.512C4.698 4.186 5.345 4 7.128 4Z" />
+                            <use xlink:href="#layout-switcher-outline-card" href="#layout-switcher-outline-card" fill="url(#layout-switcher-gradient-linear-card)" />
+                            <path fill="var(--border)" fill-opacity=".5" d="M14 6c.822 0 1.51.566 1.7 1.33l.01.054.101.049a4.001 4.001 0 0 1 2.184 3.367L18 11v3.17l.054.025c.522.27.89.796.94 1.411l.006.144c0 .242-.049.472-.138.681l-.033.069h.671a1.5 1.5 0 0 1 1.44 1.079l.017.07.097.046c.522.27.89.796.94 1.411l.006.144c0 .518-.227.99-.593 1.313l-.082.065-.019.119c-.04.242-.138.465-.28.654l-.026.031v.569H7v-.57l-.026-.03a1.497 1.497 0 0 1-.249-.511l-.031-.143-.02-.119-.08-.065a1.747 1.747 0 0 1-.587-1.159L6 19.25c0-.677.384-1.263.946-1.555l.096-.046.018-.07a1.501 1.501 0 0 1 1.296-1.072L8.5 16.5h.67l-.032-.069a1.74 1.74 0 0 1-.132-.537L9 15.75c0-.677.384-1.263.946-1.555L10 14.17V11c0-1.54.876-2.901 2.189-3.568l.1-.048.012-.055a1.751 1.751 0 0 1 1.555-1.323L14 6Z" />
+                            <path fill="#D7CDC3" fill-rule="evenodd" d="M9 22v-2h10v2z" />
+                            <path fill="#977C61" d="M19.5 17.5a.5.5 0 0 1 .5.5v.5h.25a.75.75 0 0 1 .158 1.483v.058l-.088.541a.5.5 0 0 1-.319.387L20 22h-1v-2h-2v.5a.5.5 0 1 1-1 0V20h-1.5v.5a.5.5 0 1 1-1 0V20H12v.5a.5.5 0 1 1-1 0V20H9v2H8l-.001-1.031a.5.5 0 0 1-.319-.387l-.083-.5a.502.502 0 0 1-.007-.1.75.75 0 0 1 .16-1.481l.25-.001V18a.5.5 0 0 1 .5-.5h11Z" />
+                            <path fill="#C9A582" fill-rule="evenodd" d="M11.508 19.91a.5.5 0 0 1 .402-.402L12 19.5h1.5a.5.5 0 0 1 .492.41L14 20l.008-.089a.5.5 0 0 1 .402-.402l.09-.008H16a.5.5 0 0 1 .492.41L16.5 20l.008-.089a.5.5 0 0 1 .402-.402L17 19.5h2a.5.5 0 0 1 .5.5l.001.968a.5.5 0 0 1 .325-.468l.082-.46v-.057a.5.5 0 0 1 .395-.489.25.25 0 0 0-.053-.494H20a.5.5 0 0 1-.5-.5V18h-11v.5a.5.5 0 0 1-.5.5h-.25a.25.25 0 0 0-.25.25c0 .118.082.218.193.242a.5.5 0 0 1 .397.507l.084.501.08.038a.5.5 0 0 1 .245.43v.532L8.5 20a.5.5 0 0 1 .41-.492L9 19.5h2a.5.5 0 0 1 .492.41L11.5 20l.008-.089Z" />
+                            <path fill="#C93658" fill-rule="evenodd" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Z" />
+                            <path fill="#FFF" fill-opacity=".25" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Zm0 .5a.25.25 0 0 0-.227.351.5.5 0 0 1-.335.712A2.501 2.501 0 0 0 11.5 11v4a.5.5 0 0 1-.5.5h-.25a.25.25 0 1 0 0 .5H11a.5.5 0 0 1 .5.5v.5h5v-.5a.5.5 0 0 1 .41-.492L17 16h.25a.25.25 0 1 0 0-.5H17a.5.5 0 0 1-.5-.5v-4a2.498 2.498 0 0 0-1.937-2.435.5.5 0 0 1-.338-.706A.25.25 0 0 0 14 7.5Z" />
+                            <path fill="#FFF" fill-rule="evenodd" d="M16 13.875V15h-.875v-1.125H16Zm-3.125 0V15H12v-1.125h.875Zm2 0V15h-1.75v-1.125h1.75Zm0-1.5v1.25h-1.75v-1.25h1.75Zm1.125 0v1.25h-.875v-1.25H16ZM14.875 11v1.125h-1.75V11h1.75ZM16 11v1.125h-.875V11H16Zm-3.125 0v1.125H12V11h.875ZM12 12.375h.875v1.25H12v-1.25Z" />
+                            <path fill="#000" fill-opacity=".25" d="M18.75 18.625a.125.125 0 1 1 0 .25h-9.5a.125.125 0 1 1 0-.25h9.5Z" />
+                            <circle class="frame-glint" cx="21.5" cy="14.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".5" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="6.5" cy="13.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".75" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="8.5" cy="9.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" style="mix-blend-mode:screen" />
+                            <path fill="#FFF" fill-opacity=".75" fill-rule="evenodd" d="M20.644 8.106a2 2 0 1 1-2.538 2.538 2 2 0 0 0 2.56-2.472Z" style="mix-blend-mode:screen" />
+                            <path class="layout-switcher__glow" fill="#F4EFE9" fill-opacity=".5" fill-rule="evenodd" d="m4 10 8 1h4l8-1v6l-8-1h-4l-8 1z" style="mix-blend-mode:screen" />
+                        </g>
+                    </svg>
+                </label>
+                <input type="radio" class="layout-switcher__input" name="layout-switcher" id="layout-switcher-photo-corners" value="photo-corners">
+                <label for="layout-switcher-photo-corners" class="layout-switcher__button" data-layout="photo-corners">
+                    <span class="sr-only">Photo Corners</span>
+                    <svg class="layout-switcher__icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <linearGradient id="layout-switcher-gradient-linear-photo" x1="50%" x2="50%" y1="0%" y2="98.148%">
+                                <stop offset="0%" stop-color="var(--layout-switcher-gradient-linear-start, #101B3B)" />
+                                <stop offset="100%" stop-color="var(--layout-switcher-gradient-linear-end, #758AC8)" />
+                            </linearGradient>
+                            <path id="layout-switcher-outline-photo" d="M6.368 6.002 21.436 6c.892 0 1.215.093 1.54.267.327.174.583.43.757.756.174.326.267.65.267 1.54v10.873c0 .892-.093 1.215-.267 1.54-.174.327-.43.583-.756.757-.326.174-.65.267-1.54.267H6.563c-.892 0-1.215-.093-1.54-.267a1.817 1.817 0 0 1-.757-.756c-.16-.301-.252-.6-.265-1.345L4 8.564c0-.892.093-1.215.267-1.54.174-.327.43-.583.756-.757.301-.16.6-.252 1.345-.265Z" />
+                        </defs>
+                        <g fill="none">
+                            <path class="frame" fill="var(--frame)" stroke="rgba(0,0,0,0.05)" stroke-width="1" d="M7.128 4h13.744c1.783 0 2.43.186 3.082.534.652.349 1.163.86 1.512 1.512.348.652.534 1.299.534 3.082v9.744c0 1.783-.186 2.43-.534 3.082a3.635 3.635 0 0 1-1.512 1.512c-.652.348-1.299.534-3.082.534H7.128c-1.783 0-2.43-.186-3.082-.534a3.635 3.635 0 0 1-1.512-1.512c-.33-.618-.514-1.23-.532-2.81L2 9.128c0-1.783.186-2.43.534-3.082a3.635 3.635 0 0 1 1.512-1.512C4.698 4.186 5.345 4 7.128 4Z" />
+                            <use xlink:href="#layout-switcher-outline-photo" href="#layout-switcher-outline-photo" fill="url(#layout-switcher-gradient-linear-photo)" />
+                            <path fill="var(--border)" fill-opacity=".5" d="M14 6c.822 0 1.51.566 1.7 1.33l.01.054.101.049a4.001 4.001 0 0 1 2.184 3.367L18 11v3.17l.054.025c.522.27.89.796.94 1.411l.006.144c0 .242-.049.472-.138.681l-.033.069h.671a1.5 1.5 0 0 1 1.44 1.079l.017.07.097.046c.522.27.89.796.94 1.411l.006.144c0 .518-.227.99-.593 1.313l-.082.065-.019.119c-.04.242-.138.465-.28.654l-.026.031v.569H7v-.57l-.026-.03a1.497 1.497 0 0 1-.249-.511l-.031-.143-.02-.119-.08-.065a1.747 1.747 0 0 1-.587-1.159L6 19.25c0-.677.384-1.263.946-1.555l.096-.046.018-.07a1.501 1.501 0 0 1 1.296-1.072L8.5 16.5h.67l-.032-.069a1.74 1.74 0 0 1-.132-.537L9 15.75c0-.677.384-1.263.946-1.555L10 14.17V11c0-1.54.876-2.901 2.189-3.568l.1-.048.012-.055a1.751 1.751 0 0 1 1.555-1.323L14 6Z" />
+                            <path fill="#D7CDC3" fill-rule="evenodd" d="M9 22v-2h10v2z" />
+                            <path fill="#977C61" d="M19.5 17.5a.5.5 0 0 1 .5.5v.5h.25a.75.75 0 0 1 .158 1.483v.058l-.088.541a.5.5 0 0 1-.319.387L20 22h-1v-2h-2v.5a.5.5 0 1 1-1 0V20h-1.5v.5a.5.5 0 1 1-1 0V20H12v.5a.5.5 0 1 1-1 0V20H9v2H8l-.001-1.031a.5.5 0 0 1-.319-.387l-.083-.5a.502.502 0 0 1-.007-.1.75.75 0 0 1 .16-1.481l.25-.001V18a.5.5 0 0 1 .5-.5h11Z" />
+                            <path fill="#C9A582" fill-rule="evenodd" d="M11.508 19.91a.5.5 0 0 1 .402-.402L12 19.5h1.5a.5.5 0 0 1 .492.41L14 20l.008-.089a.5.5 0 0 1 .402-.402l.09-.008H16a.5.5 0 0 1 .492.41L16.5 20l.008-.089a.5.5 0 0 1 .402-.402L17 19.5h2a.5.5 0 0 1 .5.5l.001.968a.5.5 0 0 1 .325-.468l.082-.46v-.057a.5.5 0 0 1 .395-.489.25.25 0 0 0-.053-.494H20a.5.5 0 0 1-.5-.5V18h-11v.5a.5.5 0 0 1-.5.5h-.25a.25.25 0 0 0-.25.25c0 .118.082.218.193.242a.5.5 0 0 1 .397.507l.084.501.08.038a.5.5 0 0 1 .245.43v.532L8.5 20a.5.5 0 0 1 .41-.492L9 19.5h2a.5.5 0 0 1 .492.41L11.5 20l.008-.089Z" />
+                            <path fill="#C93658" fill-rule="evenodd" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Z" />
+                            <path fill="#FFF" fill-opacity=".25" d="M14 7a.75.75 0 0 1 .675 1.078A2.998 2.998 0 0 1 17 11v4h.25a.75.75 0 1 1 0 1.5H17v1h-6v-1h-.25a.75.75 0 1 1 0-1.5H11v-4c0-1.425.994-2.618 2.326-2.924A.75.75 0 0 1 14 7Zm0 .5a.25.25 0 0 0-.227.351.5.5 0 0 1-.335.712A2.501 2.501 0 0 0 11.5 11v4a.5.5 0 0 1-.5.5h-.25a.25.25 0 1 0 0 .5H11a.5.5 0 0 1 .5.5v.5h5v-.5a.5.5 0 0 1 .41-.492L17 16h.25a.25.25 0 1 0 0-.5H17a.5.5 0 0 1-.5-.5v-4a2.498 2.498 0 0 0-1.937-2.435.5.5 0 0 1-.338-.706A.25.25 0 0 0 14 7.5Z" />
+                            <path fill="#FFF" fill-rule="evenodd" d="M16 13.875V15h-.875v-1.125H16Zm-3.125 0V15H12v-1.125h.875Zm2 0V15h-1.75v-1.125h1.75Zm0-1.5v1.25h-1.75v-1.25h1.75Zm1.125 0v1.25h-.875v-1.25H16ZM14.875 11v1.125h-1.75V11h1.75ZM16 11v1.125h-.875V11H16Zm-3.125 0v1.125H12V11h.875ZM12 12.375h.875v1.25H12v-1.25Z" />
+                            <path fill="#000" fill-opacity=".25" d="M18.75 18.625a.125.125 0 1 1 0 .25h-9.5a.125.125 0 1 1 0-.25h9.5Z" />
+                            <circle class="frame-glint" cx="21.5" cy="14.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".5" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="6.5" cy="13.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" opacity=".75" style="mix-blend-mode:screen" />
+                            <circle class="frame-glint" cx="8.5" cy="9.5" r="0.5" fill="#FFF" fill-opacity=".75" fill-rule="evenodd" style="mix-blend-mode:screen" />
+                            <path fill="#FFF" fill-opacity=".75" fill-rule="evenodd" d="M20.644 8.106a2 2 0 1 1-2.538 2.538 2 2 0 0 0 2.56-2.472Z" style="mix-blend-mode:screen" />
+                            <path class="layout-switcher__glow" fill="#F4EFE9" fill-opacity=".5" fill-rule="evenodd" d="m4 10 8 1h4l8-1v6l-8-1h-4l-8 1z" style="mix-blend-mode:screen" />
+                        </g>
+                    </svg>
+                </label>
             </div>
 
             <div class="container" data-layout="slots">
@@ -156,9 +254,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -193,9 +291,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -230,9 +328,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -267,9 +365,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -304,9 +402,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -341,9 +439,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -378,9 +476,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -415,9 +513,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -452,9 +550,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -489,9 +587,9 @@
                         <div class="share">
                             <span class="share-text" data-i18n="share.label">Share</span>
                             <ul class="footer-nav-items">
-                                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
                             </ul>
                         </div>
@@ -505,11 +603,11 @@
                 <img class="main-footer__logo" src="images/overlapse.svg" height="40px" alt="Overlapse"></a>
             <span class="follow-us" data-i18n="follow.us">Follow Us</span>
             <ul class="footer-nav-items">
-                <li class="navigation-item"><a class="navigation-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
+                <li class="navigation-item"><a class="share-link" href="https://www.facebook.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.facebook">
                     <img class="social-media-icon" src="images/facebook.svg" alt="Facebook"></a></li>
-                <li class="navigation-item"><a class="navigation-link" href="https://www.instagram.com/overlapseproject/" data-i18n-attrs="title" data-i18n-title="social.instagram">
+                <li class="navigation-item"><a class="share-link" href="https://www.instagram.com/overlapseproject/" data-i18n-attrs="title" data-i18n-title="social.instagram">
                     <img class="social-media-icon" src="images/instagram.svg" alt="Instagram"></a></li>
-                <li class="navigation-item"><a class="navigation-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
+                <li class="navigation-item"><a class="share-link" href="https://twitter.com/overlapseproject" data-i18n-attrs="title" data-i18n-title="social.twitter">
                     <img class="social-media-icon" src="images/twitter.svg" alt="Twitter"></a></li>
             </ul>
             <span class="copyright" data-i18n="footer.copyright">&copy; 2019 Overlapse</span>

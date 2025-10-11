@@ -463,27 +463,42 @@ function initLayoutSwitcher() {
     return;
   }
 
-  var buttons = Array.prototype.slice.call(switcher.querySelectorAll('[data-layout]'));
-  var setActive = function(button) {
-    buttons.forEach(function(btn) {
-      btn.classList.toggle('layout-switcher__button--active', btn === button);
-    });
-  };
+  var inputs = Array.prototype.slice.call(switcher.querySelectorAll('.layout-switcher__input'));
 
   var applyLayout = function(layout) {
     container.setAttribute('data-layout', layout);
   };
 
-  switcher.addEventListener('click', function(event) {
-    var target = event.target.closest('[data-layout]');
-    if (!target) {
-      return;
+  var syncFromChecked = function() {
+    var checked = null;
+
+    for (var i = 0; i < inputs.length; i += 1) {
+      if (inputs[i].checked) {
+        checked = inputs[i];
+        break;
+      }
     }
 
-    var layoutName = target.getAttribute('data-layout');
-    setActive(target);
-    applyLayout(layoutName);
+    if (!checked && inputs.length) {
+      checked = inputs[0];
+      checked.checked = true;
+    }
+
+    if (checked) {
+      applyLayout(checked.value);
+    }
+  };
+
+  inputs.forEach(function(input) {
+    input.addEventListener('change', function() {
+      if (!input.checked) {
+        return;
+      }
+      applyLayout(input.value);
+    });
   });
+
+  syncFromChecked();
 
   var toggleVisibility = function(show) {
     switcher.classList.toggle('layout-switcher--visible', show);
@@ -590,6 +605,7 @@ function initThemeToggle() {
   };
 
   var applyTheme = function(theme) {
+    currentTheme = theme;
     var isDark = theme === 'dark';
     document.body.classList.toggle('theme-dark', isDark);
     toggles.forEach(function(btn) {
@@ -606,17 +622,51 @@ function initThemeToggle() {
     }
   };
 
+  var toggleTheme = function(options) {
+    var animate = !(options && options.animate === false);
+    var nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    hasExplicitPreference = true;
+    applyTheme(nextTheme);
+    updateReels(nextTheme, { animate: animate });
+  };
+
   applyTheme(currentTheme);
   updateReels(currentTheme, { animate: false });
 
   toggles.forEach(function(btn) {
     btn.addEventListener('click', function() {
-      currentTheme = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
-      hasExplicitPreference = true;
-      applyTheme(currentTheme);
-      updateReels(currentTheme, { animate: true });
+      toggleTheme({ animate: true });
     });
   });
+
+  var bindShortcut = function() {
+    if (document.documentElement.dataset.themeToggleShortcutBound === 'true') {
+      return;
+    }
+    var shortcutHandler = function(event) {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) {
+        return;
+      }
+      var key = event.key || event.code || '';
+      var isShortcut = key === 'l' || key === 'L' || key === 'KeyL';
+      if (!isShortcut) {
+        return;
+      }
+      var target = event.target;
+      if (target) {
+        var tagName = target.tagName;
+        if (tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT' || target.isContentEditable) {
+          return;
+        }
+      }
+      // Allow pressing "L" to toggle between light and dark themes.
+      toggleTheme({ animate: true });
+    };
+    document.addEventListener('keydown', shortcutHandler);
+    document.documentElement.dataset.themeToggleShortcutBound = 'true';
+  };
+
+  bindShortcut();
 
   if (window.matchMedia) {
     var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -631,8 +681,9 @@ function initThemeToggle() {
         return;
       }
       hasExplicitPreference = false;
-      applyTheme(event.matches ? 'dark' : 'light');
-      updateReels(event.matches ? 'dark' : 'light', { animate: true });
+      var next = event.matches ? 'dark' : 'light';
+      applyTheme(next);
+      updateReels(next, { animate: true });
     };
     if (typeof mediaQuery.addEventListener === 'function') {
       mediaQuery.addEventListener('change', mediaChangeHandler);
